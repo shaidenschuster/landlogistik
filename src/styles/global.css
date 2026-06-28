@@ -156,15 +156,15 @@ h1, h2, h3, h4, h5, h6 {
 .hero-dark p,
 .hero-dark li { color: #fff; }
 
-.hero-dark .eyebrow { color: #93c5fd; }
+.hero-dark .eyebrow { color: #81c784; }
 
 /* ── Footer dark ──────────────────────────────────── */
 .footer-dark {
-  background: #0f172a;
+  background: #111111;
   color: #cbd5e1;
 }
 
-.footer-dark a { color: #94a3b8; }
+.footer-dark a { color: #e2e8f0; }
 .footer-dark a:hover { color: #fff; }
 
 /* ── Prose ────────────────────────────────────────── */

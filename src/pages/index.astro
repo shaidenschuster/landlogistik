@@ -78,7 +78,7 @@ const steps = [
   <!-- ╔══════════════════════════════════════════════╗ -->
   <!-- ║  HERO                                        ║ -->
   <!-- ╚══════════════════════════════════════════════╝ -->
-  <section class="hero-dark relative overflow-hidden pt-32 pb-20 md:pt-40 md:pb-28" aria-labelledby="hero-heading">
+  <section class="hero-dark relative overflow-hidden pt-40 pb-28 md:pt-52 md:pb-40" aria-labelledby="hero-heading">
     <!-- Background decoration -->
     <div class="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
       <div class="absolute -top-1/4 -right-1/4 w-[600px] h-[600px] rounded-full bg-primary opacity-20 blur-3xl"></div>
@@ -114,7 +114,7 @@ const steps = [
         </div>
 
         <!-- Stats bar -->
-        <div class="flex flex-wrap gap-6 sm:gap-10 border-t border-white/20 pt-8">
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 border-t border-white/20 pt-8 max-w-3xl">
           <div>
             <p class="font-display text-3xl font-bold text-white">70&nbsp;%</p>
             <p class="text-sm text-white/60">Elektrofahrzeuge</p>
@@ -155,11 +155,11 @@ const steps = [
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {services.map((s) => (
           <div class="group p-6 rounded-2xl border border-border hover:border-primary/30 hover:shadow-lg transition-all duration-300 bg-white hover:bg-warm">
-            <div class="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-5 group-hover:bg-primary group-hover:text-white transition-colors duration-300">
+            <div class="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-5 mx-auto group-hover:bg-primary group-hover:text-white transition-colors duration-300">
               <Fragment set:html={s.icon} />
             </div>
-            <h3 class="font-display text-lg font-bold text-dark mb-2">{s.title}</h3>
-            <p class="text-sm text-muted leading-relaxed" set:html={s.desc} />
+            <h3 class="font-display text-lg font-bold text-dark mb-2 text-center">{s.title}</h3>
+            <p class="text-sm text-muted leading-relaxed text-center" set:html={s.desc} />
           </div>
         ))}
       </div>
@@ -182,18 +182,18 @@ const steps = [
         </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
         {customers.map((c) => (
-          <div class="bg-white rounded-2xl p-8 border border-border hover:shadow-lg transition-shadow duration-300">
+          <div class="flex flex-col bg-white rounded-2xl p-8 border border-border hover:shadow-lg transition-shadow duration-300">
             <div class="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center text-accent mb-5">
               <Fragment set:html={c.icon} />
             </div>
             <h3 class="font-display text-xl font-bold text-dark mb-1">{c.title}</h3>
             <p class="text-sm text-primary font-semibold mb-4">{c.subtitle}</p>
-            <p class="text-muted text-sm leading-relaxed mb-5">{c.text}</p>
-            <div class="flex items-start gap-2 p-3 bg-accent/5 rounded-lg border border-[--color-accent]/15">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-accent flex-shrink-0 mt-0.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-              <p class="text-sm font-medium text-accent-dark">{c.result}</p>
+            <p class="text-muted text-sm leading-relaxed flex-1">{c.text}</p>
+            <div class="mt-5 flex items-center gap-2 pt-4 border-t border-border">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-primary flex-shrink-0" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              <p class="text-sm font-semibold text-primary">{c.result}</p>
             </div>
           </div>
         ))}
@@ -231,7 +231,7 @@ const steps = [
           </div>
         </div>
 
-        <div class="space-y-4">
+        <div class="space-y-6">
           <!-- Classic -->
           <div class="relative p-6 rounded-2xl border-2 border-red-100 bg-red-50 opacity-80">
             <div class="absolute -top-3 left-6">
@@ -302,9 +302,8 @@ const steps = [
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         {steps.map((step) => (
           <div class="relative bg-white rounded-2xl p-8 border border-border hover:shadow-lg transition-shadow duration-300 overflow-hidden">
-            <span class="step-number">{step.n}</span>
             <div class="relative">
-              <span class="inline-block font-display text-6xl font-bold text-primary/15 leading-none mb-4">{step.n}</span>
+              <span class="inline-block font-display text-6xl font-bold text-primary/20 leading-none mb-4">{step.n}</span>
               <h3 class="font-display text-xl font-bold text-dark mb-3">{step.title}</h3>
               <p class="text-muted text-sm leading-relaxed">{step.text}</p>
             </div>
