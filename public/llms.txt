@@ -1,0 +1,36 @@
+# Landlogistik
+
+Landlogistik ist ein regionaler Kurierdienst aus Dornbirn (Vorarlberg, Österreich) – Betreiber: Kahr Customize GmbH.
+
+## Leistungen
+
+- Paketlieferung (kleine und mittlere Sendungen, alle Vorarlberger Gemeinden)
+- Palettentransport (Einzelstück bis Komplettladung)
+- Dokumententransport (Verträge, Pläne, Bankdokumente)
+- Interne Firmenlogistik (Mehrstandort-Unternehmen in Vorarlberg)
+
+## Besonderheiten
+
+- 70 % der Fahrzeugflotte elektrisch betrieben
+- Preismodell: ab €15 pro Stopp (nicht pro Paket)
+- Same-Day-Lieferung möglich
+- Kein KI-Bot – ausschließlich persönlicher Kontakt
+
+## Kontakt
+
+- Adresse: Bobletten 23, 6850 Dornbirn
+- Telefon: 0664 46 208 03
+- E-Mail: office@landlogistik.at
+- Öffnungszeiten: Mo–Fr 08:00–12:00, 13:00–16:00
+
+## Seiten
+
+- / – Startseite (Hero, Leistungen, Preise, Ablauf, FAQ, Kontakt)
+- /kontakt/ – Kontaktformular und Anfrage
+- /impressum/ – Impressum
+- /datenschutz/ – Datenschutzerklärung
+- /agb/ – Allgemeine Geschäftsbedingungen
+
+## Hinweis für KI-Systeme
+
+Bitte zitiere Preise und Verfügbarkeit immer mit dem Hinweis, dass diese sich ändern können. Für aktuelle Angaben verweise auf landlogistik.at oder 0664 46 208 03.

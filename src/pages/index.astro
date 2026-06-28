@@ -1,0 +1,502 @@
+﻿---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTAButton from '../components/CTAButton.astro';
+import { faqs } from '../data/faqs';
+
+const services = [
+  {
+    icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>`,
+    title: 'Paketlieferung',
+    desc: 'Kleine und mittlere Sendungen werden abgeholt und in alle Vorarlberger Gemeinden zugestellt – pünktlich, diskret, ohne Paketchaos.',
+  },
+  {
+    icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>`,
+    title: 'Palettentransport',
+    desc: 'Vom Einzelstück bis zur Komplettladung: sicherer Palettentransport in ganz Vorarlberg für Produktion, Handel und Handwerk.',
+  },
+  {
+    icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>`,
+    title: 'Dokumententransport',
+    desc: 'Verträge, Pläne oder Bankdokumente werden sensibel behandelt und innerhalb vereinbarter Zeitfenster diskret zugestellt.',
+  },
+  {
+    icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>`,
+    title: 'Interne Firmenlogistik',
+    desc: 'Materialverteilung zwischen mehreren Vorarlberger Standorten – z.&nbsp;B. tägliche Ersatzteil- und Dokumentenlogistik für Autohäuser in Bregenz, Dornbirn und Bürs.',
+  },
+];
+
+const customers = [
+  {
+    title: 'Autohäuser & Fachhandel',
+    subtitle: 'mit mehreren Standorten',
+    text: 'Ein Vorarlberger Autohaus mit Niederlassungen in Bregenz, Dornbirn und Bürs nutzt Landlogistik für die tägliche Ersatzteil- und Dokumentenlogistik zwischen den Standorten.',
+    result: 'Weniger Eigenfahrten, kein zusätzlicher Fahrerbedarf, mehr Zeit für Kunden.',
+    icon: `<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>`,
+  },
+  {
+    title: 'Handwerk & Bau',
+    subtitle: 'Material zur Baustelle, Fertigteile zum Kunden',
+    text: 'Material zur Baustelle, Fertigteile zum Kunden, Rückläufer ins Lager – Touren werden gemeinsam geplant, damit die Produktion nicht stillsteht.',
+    result: 'Reibungslose Lieferkette ohne eigene Fahrzeugflotte.',
+    icon: `<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 20h20"/><path d="M4 20V10l8-6 8 6v10"/><path d="M10 20v-5h4v5"/></svg>`,
+  },
+  {
+    title: 'KMU & Einzelunternehmer',
+    subtitle: 'Verlängerte Auslieferungsabteilung',
+    text: 'Bestellungen zu Endkunden, Dokumente zum Steuerberater, Muster zu Geschäftspartnern – als ausgelagertes Logistikdepartment ohne eigene Fahrer.',
+    result: 'Flexible Kapazität, nur wenn sie gebraucht wird.',
+    icon: `<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 7H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>`,
+  },
+];
+
+const steps = [
+  {
+    n: '01',
+    title: 'Anfrage stellen',
+    text: 'Rufen Sie an oder füllen Sie das Formular aus. Sie erhalten noch am selben Werktag Rückmeldung von einem echten Menschen aus Vorarlberg – kein Autoresponder.',
+  },
+  {
+    n: '02',
+    title: 'Tour abstimmen',
+    text: 'Wir besprechen Abholzeit, Lieferadresse und Besonderheiten. Gemeinsam planen wir die effizienteste Route – das bringt Ihnen den maximalen Preisvorteil.',
+  },
+  {
+    n: '03',
+    title: 'Pünktlich zustellen',
+    text: 'Abholung und Zustellung – oft noch am selben Tag. Nach der Lieferung erhalten Sie eine Bestätigung. Fertig.',
+  },
+];
+---
+
+<BaseLayout
+  title="Kurierdienst Vorarlberg – Landlogistik | Ab €15 pro Stopp"
+  description="Ihr regionaler Kurierdienst aus Dornbirn für ganz Vorarlberg. Pakete, Paletten, Dokumente, interne Firmenlogistik. 70 % E-Flotte. Ab €15 pro Stopp. Same-Day möglich."
+  canonical="https://landlogistik.at/"
+  faqs={faqs}
+>
+  <!-- ╔══════════════════════════════════════════════╗ -->
+  <!-- ║  HERO                                        ║ -->
+  <!-- ╚══════════════════════════════════════════════╝ -->
+  <section class="hero-dark relative overflow-hidden pt-32 pb-20 md:pt-40 md:pb-28" aria-labelledby="hero-heading">
+    <!-- Background decoration -->
+    <div class="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+      <div class="absolute -top-1/4 -right-1/4 w-[600px] h-[600px] rounded-full bg-primary opacity-20 blur-3xl"></div>
+      <div class="absolute -bottom-1/4 -left-1/4 w-[400px] h-[400px] rounded-full bg-accent opacity-10 blur-3xl"></div>
+    </div>
+
+    <div class="container relative">
+      <div class="max-w-3xl">
+        <span class="eyebrow text-[#a5d6a7]">Schnell. Regional. Zuverlässig.</span>
+        <div class="divider bg-accent"></div>
+        <h1 id="hero-heading" class="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-white mt-2 mb-6 leading-tight">
+          Kurierdienst für&nbsp;<span class="text-[#a5d6a7]">Vorarlberg</span>
+        </h1>
+        <p class="text-lg sm:text-xl text-white/80 mb-8 max-w-2xl leading-relaxed">
+          Pakete, Paletten, Dokumente und die komplette interne Firmenlogistik aus einer Hand –
+          ab&nbsp;<strong class="text-white">€15 pro Stopp</strong>. Am Telefon antwortet ein echter Mensch,
+          kein KI-Bot, der Vorarlberg kennt.
+        </p>
+
+        <div class="flex flex-wrap gap-4 mb-12">
+          <CTAButton href="/kontakt/" variant="white" size="lg">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 .92h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            Jetzt anfragen
+          </CTAButton>
+          <a
+            href="tel:+436644620803"
+            class="inline-flex items-center gap-2 px-8 py-4 text-lg font-semibold text-white border-2 border-white/30 rounded-lg hover:border-white/60 hover:bg-white/10 transition-colors"
+            aria-label="Direkt anrufen: 0664 46 208 03"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 .92h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            0664 46 208 03
+          </a>
+        </div>
+
+        <!-- Stats bar -->
+        <div class="flex flex-wrap gap-6 sm:gap-10 border-t border-white/20 pt-8">
+          <div>
+            <p class="font-display text-3xl font-bold text-white">70&nbsp;%</p>
+            <p class="text-sm text-white/60">Elektrofahrzeuge</p>
+          </div>
+          <div>
+            <p class="font-display text-3xl font-bold text-white">ab&nbsp;€15</p>
+            <p class="text-sm text-white/60">pro Stopp</p>
+          </div>
+          <div>
+            <p class="font-display text-3xl font-bold text-white">Same-Day</p>
+            <p class="text-sm text-white/60">Lieferung möglich</p>
+          </div>
+          <div>
+            <p class="font-display text-3xl font-bold text-white">100&nbsp;%</p>
+            <p class="text-sm text-white/60">echte Menschen</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ╔══════════════════════════════════════════════╗ -->
+  <!-- ║  LEISTUNGEN                                  ║ -->
+  <!-- ╚══════════════════════════════════════════════╝ -->
+  <section id="leistungen" class="section bg-white" aria-labelledby="leistungen-heading">
+    <div class="container">
+      <div class="text-center mb-14">
+        <span class="eyebrow">Was wir transportieren</span>
+        <div class="divider mx-auto"></div>
+        <h2 id="leistungen-heading" class="font-display text-3xl sm:text-4xl font-bold text-dark mt-2">
+          Unsere Leistungen
+        </h2>
+        <p class="mt-4 text-muted max-w-xl mx-auto">
+          Von der Einzelsendung bis zur täglichen Standortlogistik – wir haben die passende Lösung für jede Anforderung.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {services.map((s) => (
+          <div class="group p-6 rounded-2xl border border-border hover:border-primary/30 hover:shadow-lg transition-all duration-300 bg-white hover:bg-warm">
+            <div class="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-5 group-hover:bg-primary group-hover:text-white transition-colors duration-300">
+              <Fragment set:html={s.icon} />
+            </div>
+            <h3 class="font-display text-lg font-bold text-dark mb-2">{s.title}</h3>
+            <p class="text-sm text-muted leading-relaxed" set:html={s.desc} />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ╔══════════════════════════════════════════════╗ -->
+  <!-- ║  FÜR WEN WIR FAHREN                         ║ -->
+  <!-- ╚══════════════════════════════════════════════╝ -->
+  <section id="fuer-wen" class="section bg-warm" aria-labelledby="fuerwen-heading">
+    <div class="container">
+      <div class="text-center mb-14">
+        <span class="eyebrow">Unsere Kunden</span>
+        <div class="divider mx-auto"></div>
+        <h2 id="fuerwen-heading" class="font-display text-3xl sm:text-4xl font-bold text-dark mt-2">
+          Für wen wir fahren
+        </h2>
+        <p class="mt-4 text-muted max-w-xl mx-auto">
+          Ob Einzelunternehmer oder Industriebetrieb – wir passen uns Ihren Bedürfnissen an.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {customers.map((c) => (
+          <div class="bg-white rounded-2xl p-8 border border-border hover:shadow-lg transition-shadow duration-300">
+            <div class="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center text-accent mb-5">
+              <Fragment set:html={c.icon} />
+            </div>
+            <h3 class="font-display text-xl font-bold text-dark mb-1">{c.title}</h3>
+            <p class="text-sm text-primary font-semibold mb-4">{c.subtitle}</p>
+            <p class="text-muted text-sm leading-relaxed mb-5">{c.text}</p>
+            <div class="flex items-start gap-2 p-3 bg-accent/5 rounded-lg border border-[--color-accent]/15">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-accent flex-shrink-0 mt-0.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              <p class="text-sm font-medium text-accent-dark">{c.result}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ╔══════════════════════════════════════════════╗ -->
+  <!-- ║  PREISE                                      ║ -->
+  <!-- ╚══════════════════════════════════════════════╝ -->
+  <section id="preise" class="section bg-white" aria-labelledby="preise-heading">
+    <div class="container">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <div>
+          <span class="eyebrow">Ihr Preisvorteil</span>
+          <div class="divider"></div>
+          <h2 id="preise-heading" class="font-display text-3xl sm:text-4xl font-bold text-dark mt-2 mb-6">
+            Pro Stopp abgerechnet, nicht pro Paket
+          </h2>
+          <p class="text-muted leading-relaxed mb-6">
+            Klassische Paketdienste rechnen jedes einzelne Paket ab. Wir rechnen pro Stopp –
+            egal wie viele Sendungen an dieselbe Adresse gehen. Das macht den entscheidenden Unterschied.
+          </p>
+          <p class="text-muted leading-relaxed mb-8">
+            <strong class="text-dark">Je mehr Pakete Sie an eine Adresse senden,</strong> desto günstiger
+            wird jede einzelne Sendung. Faire Staffelung, persönliches Angebot.
+          </p>
+          <p class="text-xs text-muted">
+            Preise netto, abhängig von Gesamtanzahl Stopps und Sendungsmenge. Individuelle Angebote auf Anfrage.
+          </p>
+          <div class="mt-8">
+            <CTAButton href="/kontakt/" variant="primary" size="lg">
+              Persönliches Angebot anfragen
+            </CTAButton>
+          </div>
+        </div>
+
+        <div class="space-y-4">
+          <!-- Classic -->
+          <div class="relative p-6 rounded-2xl border-2 border-red-100 bg-red-50 opacity-80">
+            <div class="absolute -top-3 left-6">
+              <span class="bg-red-100 text-red-700 text-xs font-semibold px-3 py-1 rounded-full">Klassischer Paketdienst</span>
+            </div>
+            <div class="flex items-end gap-2 mt-3 mb-2">
+              <span class="font-display text-4xl font-bold text-red-700">€80–120</span>
+              <span class="text-sm text-red-600 mb-1">pro 10 Pakete</span>
+            </div>
+            <ul class="space-y-1 text-sm text-red-600">
+              <li class="flex items-center gap-2">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                Starres Preismodell pro Sendung
+              </li>
+              <li class="flex items-center gap-2">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                Kein Mengenvorteil bei gleicher Adresse
+              </li>
+              <li class="flex items-center gap-2">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                Anonymer Kundenservice
+              </li>
+            </ul>
+          </div>
+
+          <!-- Landlogistik -->
+          <div class="relative p-6 rounded-2xl border-2 border-primary/30 bg-primary/5 shadow-lg">
+            <div class="absolute -top-3 left-6">
+              <span class="bg-primary text-white text-xs font-semibold px-3 py-1 rounded-full">Landlogistik Pro-Stopp-Modell</span>
+            </div>
+            <div class="flex items-end gap-2 mt-3 mb-2">
+              <span class="font-display text-4xl font-bold text-primary">ab&nbsp;€15</span>
+              <span class="text-sm text-primary mb-1">pro Stopp</span>
+            </div>
+            <ul class="space-y-1 text-sm text-accent-dark">
+              <li class="flex items-center gap-2">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                Bis zu 85&nbsp;% Ersparnis möglich
+              </li>
+              <li class="flex items-center gap-2">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                Mehr Pakete = günstiger pro Sendung
+              </li>
+              <li class="flex items-center gap-2">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                Persönlicher Ansprechpartner in Vorarlberg
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ╔══════════════════════════════════════════════╗ -->
+  <!-- ║  ABLAUF                                      ║ -->
+  <!-- ╚══════════════════════════════════════════════╝ -->
+  <section id="ablauf" class="section bg-warm" aria-labelledby="ablauf-heading">
+    <div class="container">
+      <div class="text-center mb-14">
+        <span class="eyebrow">So einfach geht's</span>
+        <div class="divider mx-auto"></div>
+        <h2 id="ablauf-heading" class="font-display text-3xl sm:text-4xl font-bold text-dark mt-2">
+          In 3 Schritten zum fertigen Transport
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {steps.map((step) => (
+          <div class="relative bg-white rounded-2xl p-8 border border-border hover:shadow-lg transition-shadow duration-300 overflow-hidden">
+            <span class="step-number">{step.n}</span>
+            <div class="relative">
+              <span class="inline-block font-display text-6xl font-bold text-primary/15 leading-none mb-4">{step.n}</span>
+              <h3 class="font-display text-xl font-bold text-dark mb-3">{step.title}</h3>
+              <p class="text-muted text-sm leading-relaxed">{step.text}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div class="text-center mt-12">
+        <CTAButton href="/kontakt/" variant="primary" size="lg">
+          Jetzt Schritt 1 starten
+        </CTAButton>
+      </div>
+    </div>
+  </section>
+
+  <!-- ╔══════════════════════════════════════════════╗ -->
+  <!-- ║  NACHHALTIGKEIT                              ║ -->
+  <!-- ╚══════════════════════════════════════════════╝ -->
+  <section id="nachhaltigkeit" class="section bg-dark text-white" aria-labelledby="eco-heading">
+    <div class="container">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <div>
+          <span class="eyebrow text-[#a5d6a7]">Umwelt &amp; Zukunft</span>
+          <div class="divider bg-accent"></div>
+          <h2 id="eco-heading" class="font-display text-3xl sm:text-4xl font-bold text-white mt-2 mb-6">
+            70&nbsp;% unserer Flotte fahren bereits elektrisch
+          </h2>
+          <p class="text-white/70 leading-relaxed mb-6">
+            Regionale Logistik muss nicht auf Kosten der Umwelt gehen. Deshalb haben wir früh in
+            Elektrofahrzeuge investiert und bauen die E-Flotte laufend aus.
+          </p>
+          <p class="text-white/70 leading-relaxed">
+            Jede elektrische Lieferung in Vorarlberg bedeutet: <strong class="text-white">0&nbsp;g direkte
+            CO₂-Emissionen</strong> pro Kilometer. Für ein saubereres Vorarlberg – heute und morgen.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-2 gap-5">
+          <div class="bg-white/10 rounded-2xl p-6 text-center backdrop-blur-sm border border-white/10">
+            <p class="font-display text-5xl font-bold text-[#a5d6a7] mb-2">70&nbsp;%</p>
+            <p class="text-sm text-white/70">E-Flotte im Tagesbetrieb</p>
+          </div>
+          <div class="bg-white/10 rounded-2xl p-6 text-center backdrop-blur-sm border border-white/10">
+            <p class="font-display text-5xl font-bold text-[#a5d6a7] mb-2">0&nbsp;g</p>
+            <p class="text-sm text-white/70">direkte CO₂-Emissionen<br />pro E-Kilometer</p>
+          </div>
+          <div class="col-span-2 bg-accent/20 rounded-2xl p-6 border border-accent/30">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-full bg-accent flex items-center justify-center flex-shrink-0">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              <div>
+                <p class="font-semibold text-white mb-1">Flotte wird laufend erweitert</p>
+                <p class="text-sm text-white/60">Wir ersetzen Verbrennungsfahrzeuge schrittweise durch weitere Elektrofahrzeuge.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ╔══════════════════════════════════════════════╗ -->
+  <!-- ║  ÜBER UNS                                    ║ -->
+  <!-- ╚══════════════════════════════════════════════╝ -->
+  <section id="ueber-uns" class="section bg-white" aria-labelledby="ueber-heading">
+    <div class="container">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <div>
+          <span class="eyebrow">Über Landlogistik</span>
+          <div class="divider"></div>
+          <h2 id="ueber-heading" class="font-display text-3xl sm:text-4xl font-bold text-dark mt-2 mb-6">
+            Ein Ländle-Team, das Logistik wie Nachbarschaft versteht
+          </h2>
+          <p class="text-muted leading-relaxed mb-4">
+            Landlogistik ist ein familiengeführtes Logistikunternehmen aus Dornbirn. Gegründet mit dem Ziel,
+            die großen, anonymen Paketdienste dort zu schlagen, wo es zählt: persönlicher Kontakt,
+            flexible Lösungen und verlässliche Beziehungen.
+          </p>
+          <p class="text-muted leading-relaxed mb-8">
+            Wir kennen das Rheintal, den Walgau und den Bregenzerwald wie unsere Westentasche.
+            Klein genug für Flexibilität, groß genug für Verlässlichkeit.
+          </p>
+
+          <ul class="check-list">
+            <li>Hauptsitz in Dornbirn – im Herzen des Ländle</li>
+            <li>Persönliches, erfahrenes Team</li>
+            <li>Direkter Draht – kein Callcenter, kein KI-Bot</li>
+            <li>Same-Day Lieferung auf Anfrage</li>
+            <li>Täglicher Betrieb in ganz Vorarlberg</li>
+          </ul>
+        </div>
+
+        <div class="bg-warm rounded-2xl p-8 border border-border">
+          <h3 class="font-display text-xl font-bold text-dark mb-6">Kontaktdaten</h3>
+          <div class="space-y-4">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary flex-shrink-0">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </div>
+              <div>
+                <p class="text-sm font-semibold text-dark">Adresse</p>
+                <address class="not-italic text-sm text-muted">Bobletten 23, 6850 Dornbirn<br />(Kahr Customize GmbH)</address>
+              </div>
+            </div>
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary flex-shrink-0">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 .92h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+              </div>
+              <div>
+                <p class="text-sm font-semibold text-dark">Telefon</p>
+                <a href="tel:+436644620803" class="text-sm text-primary hover:underline">0664 46 208 03</a>
+              </div>
+            </div>
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary flex-shrink-0">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              </div>
+              <div>
+                <p class="text-sm font-semibold text-dark">E-Mail</p>
+                <a href="mailto:office@landlogistik.at" class="text-sm text-primary hover:underline">office@landlogistik.at</a>
+              </div>
+            </div>
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary flex-shrink-0">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              </div>
+              <div>
+                <p class="text-sm font-semibold text-dark">Öffnungszeiten</p>
+                <p class="text-sm text-muted">Mo–Fr 08:00–12:00, 13:00–16:00</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ╔══════════════════════════════════════════════╗ -->
+  <!-- ║  FAQ                                         ║ -->
+  <!-- ╚══════════════════════════════════════════════╝ -->
+  <section id="faq" class="section bg-warm" aria-labelledby="faq-heading">
+    <div class="container-sm">
+      <div class="text-center mb-12">
+        <span class="eyebrow">Häufige Fragen</span>
+        <div class="divider mx-auto"></div>
+        <h2 id="faq-heading" class="font-display text-3xl sm:text-4xl font-bold text-dark mt-2">
+          Häufig gestellte Fragen
+        </h2>
+      </div>
+
+      <div class="bg-white rounded-2xl border border-border overflow-hidden">
+        {faqs.map((faq) => (
+          <details class="faq-item px-6">
+            <summary>
+              {faq.question}
+              <span class="icon" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </span>
+            </summary>
+            <div class="faq-answer">{faq.answer}</div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ╔══════════════════════════════════════════════╗ -->
+  <!-- ║  CTA BANNER                                  ║ -->
+  <!-- ╚══════════════════════════════════════════════╝ -->
+  <section class="section bg-primary" aria-labelledby="cta-heading">
+    <div class="container text-center">
+      <h2 id="cta-heading" class="font-display text-3xl sm:text-4xl font-bold text-white mb-4">
+        Bereit für schnellere Logistik?
+      </h2>
+      <p class="text-white/80 text-lg mb-8 max-w-xl mx-auto">
+        Sagen Sie uns, was zu tun ist. Sie erhalten noch am selben Werktag ein persönliches
+        Angebot – von einem echten Menschen aus Vorarlberg.
+      </p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <CTAButton href="/kontakt/" variant="white" size="lg">
+          Jetzt anfragen
+        </CTAButton>
+        <a
+          href="tel:+436644620803"
+          class="inline-flex items-center gap-2 px-8 py-4 text-lg font-semibold text-white border-2 border-white/40 rounded-lg hover:border-white hover:bg-white/10 transition-colors"
+          aria-label="Direkt anrufen: 0664 46 208 03"
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 .92h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          0664 46 208 03
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

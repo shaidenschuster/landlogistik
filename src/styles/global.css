@@ -1,0 +1,274 @@
+@import "tailwindcss";
+@import "@fontsource/outfit/400.css";
+@import "@fontsource/outfit/600.css";
+@import "@fontsource/outfit/700.css";
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/500.css";
+@import "@fontsource/inter/600.css";
+
+@theme {
+  --color-primary:      #2e7d32;   /* LAND-Grün aus Logo */
+  --color-primary-dark: #1b5e20;
+  --color-accent:       #63863b;   /* Logo-Icon helleres Olivgrün */
+  --color-accent-dark:  #4a6b2e;
+  --color-dark:         #111111;   /* Near-Black für Headings */
+  --color-muted:        #4b5563;
+  --color-border:       #e2e8e0;
+  --color-warm:         #f4faf4;   /* leicht grün-getöntes Off-White */
+
+  --font-display: 'Outfit', sans-serif;
+  --font-heading: 'Outfit', sans-serif;
+  --font-body:    'Inter', sans-serif;
+
+  --section-padding-y: clamp(4rem, 8vw, 7rem);
+}
+
+/* ── Base ─────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-dark);
+  background: #fff;
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  line-height: 1.2;
+}
+
+/* ── Skip link ────────────────────────────────────── */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  background: var(--color-primary);
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 0 0 0.5rem 0.5rem;
+  font-weight: 600;
+  z-index: 9999;
+  transition: top 0.2s;
+}
+.skip-link:focus-visible { top: 0; }
+
+/* ── Section ──────────────────────────────────────── */
+.section {
+  padding-block: var(--section-padding-y);
+}
+
+/* ── Container ────────────────────────────────────── */
+.container {
+  width: 100%;
+  max-width: 72rem;
+  margin-inline: auto;
+  padding-inline: clamp(1rem, 5vw, 2rem);
+}
+
+.container-sm {
+  width: 100%;
+  max-width: 48rem;
+  margin-inline: auto;
+  padding-inline: clamp(1rem, 5vw, 2rem);
+}
+
+/* ── Eyebrow ──────────────────────────────────────── */
+.eyebrow {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+}
+
+/* ── Divider ──────────────────────────────────────── */
+.divider {
+  display: block;
+  width: 2.5rem;
+  height: 3px;
+  border-radius: 9999px;
+  background: var(--color-accent);
+  margin-block: 0.75rem;
+}
+
+/* ── Check list ───────────────────────────────────── */
+.check-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+.check-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.625rem;
+  font-size: 0.9375rem;
+  color: var(--color-muted);
+}
+
+.check-list li::before {
+  content: '';
+  display: inline-block;
+  flex-shrink: 0;
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-top: 0.1em;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%2316a34a'%3E%3Cpath fill-rule='evenodd' d='M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z' clip-rule='evenodd'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+/* ── Step number ──────────────────────────────────── */
+.step-number {
+  font-family: var(--font-display);
+  font-size: clamp(4rem, 10vw, 6rem);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--color-primary);
+  opacity: 0.12;
+  position: absolute;
+  top: -0.25em;
+  left: -0.1em;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* ── Hero dark ────────────────────────────────────── */
+.hero-dark {
+  background: linear-gradient(140deg, #0a1a0c 0%, #163620 55%, #2e7d32 100%);
+  color: #fff;
+}
+
+.hero-dark h1,
+.hero-dark h2,
+.hero-dark h3,
+.hero-dark p,
+.hero-dark li { color: #fff; }
+
+.hero-dark .eyebrow { color: #93c5fd; }
+
+/* ── Footer dark ──────────────────────────────────── */
+.footer-dark {
+  background: #0f172a;
+  color: #cbd5e1;
+}
+
+.footer-dark a { color: #94a3b8; }
+.footer-dark a:hover { color: #fff; }
+
+/* ── Prose ────────────────────────────────────────── */
+.prose {
+  max-width: 65ch;
+  color: var(--color-muted);
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+.prose h2 {
+  font-size: 1.5rem;
+  color: var(--color-dark);
+  margin-top: 2em;
+  margin-bottom: 0.5em;
+}
+
+.prose h3 {
+  font-size: 1.125rem;
+  color: var(--color-dark);
+  margin-top: 1.5em;
+  margin-bottom: 0.25em;
+}
+
+.prose p { margin-block: 0.75em; }
+
+.prose ul, .prose ol {
+  padding-left: 1.5em;
+  margin-block: 0.75em;
+}
+
+.prose li { margin-bottom: 0.25em; }
+
+/* ── FAQ accordion ────────────────────────────────── */
+.faq-item {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.faq-item summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-block: 1.25rem;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  font-family: var(--font-heading);
+  color: var(--color-dark);
+  list-style: none;
+  gap: 1rem;
+}
+
+.faq-item summary::-webkit-details-marker { display: none; }
+
+.faq-item summary .icon {
+  flex-shrink: 0;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  background: var(--color-warm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.faq-item[open] summary .icon {
+  background: var(--color-primary);
+  transform: rotate(45deg);
+}
+
+.faq-item[open] summary .icon svg { stroke: #fff; }
+
+.faq-answer {
+  padding-bottom: 1.25rem;
+  color: var(--color-muted);
+  line-height: 1.7;
+  font-size: 0.9375rem;
+}
+
+/* ── Focus styles ─────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+/* ── Success / error banner ───────────────────────── */
+.alert-banner {
+  display: none;
+  padding: 1rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+}
+
+.alert-banner.success {
+  background: #dcfce7;
+  color: #166534;
+  border: 1px solid #bbf7d0;
+}
+
+.alert-banner.error {
+  background: #fee2e2;
+  color: #991b1b;
+  border: 1px solid #fecaca;
+}

@@ -1,0 +1,301 @@
+﻿---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const requestTypes = [
+  'Standard Zustellung',
+  'Expresszustellung',
+  'Direktfahrt',
+  'Paletten / LKW',
+  'Sonderfahrt',
+  'Sonstige Anfrage',
+  'Rückruf gewünscht',
+];
+
+// Cloudflare Turnstile site key – set via CF dashboard Build variable TURNSTILE_SITE_KEY
+const TURNSTILE_SITE_KEY = import.meta.env.TURNSTILE_SITE_KEY ?? '0x4AAAAAAAD...';
+---
+
+<BaseLayout
+  title="Kontakt & Anfrage – Landlogistik Kurierdienst Vorarlberg"
+  description="Transportanfrage stellen oder Rückruf vereinbaren. Wir antworten noch am selben Werktag – kein Bot, kein Callcenter. Telefon: 0664 46 208 03"
+  canonical="https://landlogistik.at/kontakt/"
+  breadcrumbs={[
+    { name: 'Startseite', url: 'https://landlogistik.at/' },
+    { name: 'Kontakt', url: 'https://landlogistik.at/kontakt/' },
+  ]}
+>
+  <!-- Page header -->
+  <div class="hero-dark pt-32 pb-16">
+    <div class="container">
+      <span class="eyebrow text-[#93c5fd]">Direkt zum Auftrag</span>
+      <div class="divider bg-accent"></div>
+      <h1 class="font-display text-4xl sm:text-5xl font-bold text-white mt-2 mb-4">
+        Jetzt anfragen
+      </h1>
+      <p class="text-white/70 text-lg max-w-xl">
+        Sagen Sie uns, was zu tun ist. Sie erhalten noch am selben Werktag ein persönliches
+        Angebot von einem echten Menschen aus Vorarlberg.
+      </p>
+    </div>
+  </div>
+
+  <section class="section bg-warm" aria-labelledby="kontakt-form-heading">
+    <div class="container">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+
+        <!-- Form -->
+        <div class="lg:col-span-2">
+          <h2 id="kontakt-form-heading" class="font-display text-2xl font-bold text-dark mb-6">
+            Transportanfrage / Beauftragen
+          </h2>
+
+          <!-- Success / Error banners -->
+          <div id="banner-success" class="alert-banner success" role="alert" aria-live="polite">
+            <strong>Danke für Ihre Anfrage!</strong> Wir melden uns noch am selben Werktag bei Ihnen.
+          </div>
+          <div id="banner-error" class="alert-banner error" role="alert" aria-live="polite">
+            <strong>Ein Fehler ist aufgetreten.</strong> Bitte versuchen Sie es erneut oder rufen Sie uns an: 0664 46 208 03.
+          </div>
+
+          <form
+            method="POST"
+            action="/api/kontakt"
+            class="space-y-5 bg-white rounded-2xl p-8 border border-border shadow-sm"
+            novalidate
+          >
+            <!-- Honeypot -->
+            <div aria-hidden="true" tabindex="-1" style="position:absolute;left:-9999px;opacity:0;pointer-events:none;">
+              <label for="website">Website</label>
+              <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" />
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div>
+                <label for="name" class="block text-sm font-semibold text-dark mb-1.5">
+                  Vor- und Nachname <span class="text-red-500" aria-label="Pflichtfeld">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  required
+                  autocomplete="name"
+                  class="w-full px-4 py-2.5 rounded-lg border border-border text-dark placeholder-[--color-muted]/60 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-colors text-sm"
+                  placeholder="Max Mustermann"
+                />
+              </div>
+              <div>
+                <label for="firma" class="block text-sm font-semibold text-dark mb-1.5">
+                  Firma
+                </label>
+                <input
+                  type="text"
+                  id="firma"
+                  name="firma"
+                  autocomplete="organization"
+                  class="w-full px-4 py-2.5 rounded-lg border border-border text-dark placeholder-[--color-muted]/60 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-colors text-sm"
+                  placeholder="Muster GmbH"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label for="art" class="block text-sm font-semibold text-dark mb-1.5">
+                Art der Anfrage <span class="text-red-500" aria-label="Pflichtfeld">*</span>
+              </label>
+              <select
+                id="art"
+                name="art"
+                required
+                class="w-full px-4 py-2.5 rounded-lg border border-border text-dark focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-colors text-sm bg-white"
+              >
+                <option value="">Bitte wählen …</option>
+                {requestTypes.map((t) => <option value={t}>{t}</option>)}
+              </select>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div>
+                <label for="email" class="block text-sm font-semibold text-dark mb-1.5">
+                  E-Mail <span class="text-red-500" aria-label="Pflichtfeld">*</span>
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                  autocomplete="email"
+                  class="w-full px-4 py-2.5 rounded-lg border border-border text-dark placeholder-[--color-muted]/60 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-colors text-sm"
+                  placeholder="max@beispiel.at"
+                />
+              </div>
+              <div>
+                <label for="telefon" class="block text-sm font-semibold text-dark mb-1.5">
+                  Telefon
+                </label>
+                <input
+                  type="tel"
+                  id="telefon"
+                  name="telefon"
+                  autocomplete="tel"
+                  class="w-full px-4 py-2.5 rounded-lg border border-border text-dark placeholder-[--color-muted]/60 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-colors text-sm"
+                  placeholder="0664 …"
+                />
+              </div>
+            </div>
+
+            <!-- Pickup / Delivery dates -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div>
+                <label for="abholdatum" class="block text-sm font-semibold text-dark mb-1.5">
+                  Abholdatum
+                </label>
+                <input
+                  type="date"
+                  id="abholdatum"
+                  name="abholdatum"
+                  class="w-full px-4 py-2.5 rounded-lg border border-border text-dark focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-colors text-sm"
+                />
+              </div>
+              <div>
+                <label for="abholzeit" class="block text-sm font-semibold text-dark mb-1.5">
+                  Abholzeit (ca.)
+                </label>
+                <input
+                  type="time"
+                  id="abholzeit"
+                  name="abholzeit"
+                  class="w-full px-4 py-2.5 rounded-lg border border-border text-dark focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-colors text-sm"
+                />
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div>
+                <label for="zustelldatum" class="block text-sm font-semibold text-dark mb-1.5">
+                  Zustelldatum
+                </label>
+                <input
+                  type="date"
+                  id="zustelldatum"
+                  name="zustelldatum"
+                  class="w-full px-4 py-2.5 rounded-lg border border-border text-dark focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-colors text-sm"
+                />
+              </div>
+              <div>
+                <label for="zustellzeit" class="block text-sm font-semibold text-dark mb-1.5">
+                  Zustellzeit (ca.)
+                </label>
+                <input
+                  type="time"
+                  id="zustellzeit"
+                  name="zustellzeit"
+                  class="w-full px-4 py-2.5 rounded-lg border border-border text-dark focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-colors text-sm"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label for="nachricht" class="block text-sm font-semibold text-dark mb-1.5">
+                Nachricht / Details <span class="text-red-500" aria-label="Pflichtfeld">*</span>
+              </label>
+              <textarea
+                id="nachricht"
+                name="nachricht"
+                required
+                rows="5"
+                class="w-full px-4 py-2.5 rounded-lg border border-border text-dark placeholder-[--color-muted]/60 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-colors text-sm resize-y"
+                placeholder="Beschreiben Sie kurz Ihre Anforderung: Was soll transportiert werden? Von wo nach wo?"
+              ></textarea>
+            </div>
+
+            <!-- Turnstile widget -->
+            <div
+              class="cf-turnstile"
+              data-sitekey={TURNSTILE_SITE_KEY}
+              data-theme="light"
+            ></div>
+
+            <button
+              type="submit"
+              class="w-full sm:w-auto px-8 py-3.5 bg-primary text-white font-semibold rounded-lg hover:bg-primary-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[--color-primary] transition-colors shadow-sm hover:shadow-md text-base"
+            >
+              Anfrage senden
+            </button>
+          </form>
+        </div>
+
+        <!-- Sidebar -->
+        <aside aria-label="Kontaktinformationen">
+          <h2 class="font-display text-xl font-bold text-dark mb-6">Direktkontakt</h2>
+          <div class="space-y-4">
+            <a
+              href="tel:+436644620803"
+              class="flex items-center gap-4 p-5 bg-white rounded-2xl border border-border hover:border-primary/40 hover:shadow-md transition-all group"
+              aria-label="Anrufen: 0664 46 208 03"
+            >
+              <div class="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors flex-shrink-0">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 .92h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+              </div>
+              <div>
+                <p class="text-xs text-muted font-medium">Telefon</p>
+                <p class="text-base font-bold text-dark">0664 46 208 03</p>
+              </div>
+            </a>
+
+            <a
+              href="mailto:office@landlogistik.at"
+              class="flex items-center gap-4 p-5 bg-white rounded-2xl border border-border hover:border-primary/40 hover:shadow-md transition-all group"
+              aria-label="E-Mail senden: office@landlogistik.at"
+            >
+              <div class="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors flex-shrink-0">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              </div>
+              <div>
+                <p class="text-xs text-muted font-medium">E-Mail</p>
+                <p class="text-base font-bold text-dark">office@landlogistik.at</p>
+              </div>
+            </a>
+
+            <div class="p-5 bg-white rounded-2xl border border-border">
+              <div class="flex items-start gap-4">
+                <div class="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center text-primary flex-shrink-0">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                </div>
+                <div>
+                  <p class="text-xs text-muted font-medium mb-1">Öffnungszeiten</p>
+                  <p class="text-sm font-semibold text-dark">Montag – Freitag</p>
+                  <p class="text-sm text-muted">08:00–12:00 &amp; 13:00–16:00</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="p-5 bg-accent/5 rounded-2xl border border-[--color-accent]/20">
+              <p class="text-sm font-semibold text-accent-dark mb-1">Antwort noch heute</p>
+              <p class="text-sm text-muted">
+                Anfragen, die bis 15:00 Uhr eingehen, erhalten in der Regel noch am selben Werktag
+                ein persönliches Angebot.
+              </p>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<!-- Cloudflare Turnstile script -->
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
+<script>
+  // Show success/error banner based on URL params
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('success') === '1') {
+    const el = document.getElementById('banner-success');
+    if (el) el.style.display = 'block';
+  }
+  if (params.get('error') === '1') {
+    const el = document.getElementById('banner-error');
+    if (el) el.style.display = 'block';
+  }
+</script>

@@ -1,0 +1,3 @@
+# Cloudflare Workers – relative URLs only
+# www → non-www: handled via Cloudflare Redirect Rules (not here)
+/cookie-richtlinie-eu/ /datenschutz/ 301
