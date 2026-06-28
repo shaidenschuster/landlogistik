@@ -11,6 +11,5 @@ binding = "ASSETS"
 [vars]
 CONTACT_FROM = "kontakt@landlogistik.at"
 CONTACT_TO = "office@landlogistik.at"
-# RESEND_API_KEY → wrangler secret put RESEND_API_KEY
-# TURNSTILE_SECRET → wrangler secret put TURNSTILE_SECRET  (set to "disabled" for local dev)
-# TURNSTILE_SITE_KEY → set in CF dashboard Build variables
+# Secrets (never commit): wrangler secret put RESEND_API_KEY / TURNSTILE_SECRET
+# TURNSTILE_SITE_KEY → CF dashboard Build variables
