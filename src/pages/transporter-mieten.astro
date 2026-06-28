@@ -1,0 +1,439 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTAButton from '../components/CTAButton.astro';
+
+const vehicles = [
+  {
+    id: 'e-sprinter',
+    type: 'elektro',
+    name: 'Mercedes eSprinter',
+    badge: 'Elektro',
+    badgeColor: 'green',
+    volume: '10,5 m³',
+    payload: '1.000 kg',
+    priceDay: 99,
+    kmIncluded: 150,
+    kmExtra: '0,25',
+    image: '/images/transporter-an-e-ladestation.jpg',
+    highlights: [
+      'Voll geladen abholen – leer zurückbringen',
+      'Keine Ladekarte, kein Ladestopp',
+      'Leiser, emissionsfreier Stadtverkehr',
+    ],
+  },
+  {
+    id: 'e-crafter',
+    type: 'elektro',
+    name: 'VW e-Crafter',
+    badge: 'Elektro',
+    badgeColor: 'green',
+    volume: '10,7 m³',
+    payload: '975 kg',
+    priceDay: 95,
+    kmIncluded: 120,
+    kmExtra: '0,25',
+    image: '/images/transporter-seitlich-ladestation.avif',
+    highlights: [
+      'Voll geladen abholen – leer zurückbringen',
+      'Keine Ladekarte, kein Ladestopp',
+      'Ideal für Innenstadt-Lieferungen',
+    ],
+  },
+  {
+    id: 'transit-diesel',
+    type: 'diesel',
+    name: 'Ford Transit',
+    badge: 'Diesel',
+    badgeColor: 'gray',
+    volume: '11,5 m³',
+    payload: '1.200 kg',
+    priceDay: 79,
+    kmIncluded: 200,
+    kmExtra: '0,18',
+    image: '/images/klein-lkw-landlogistik.jpg',
+    highlights: [
+      'Große Reichweite ohne Zwischenstopp',
+      'Ideal für Überlandfahrten in Vorarlberg',
+      'Robuste Nutzlast für schwere Güter',
+    ],
+  },
+  {
+    id: 'crafter-diesel',
+    type: 'diesel',
+    name: 'VW Crafter',
+    badge: 'Diesel',
+    badgeColor: 'gray',
+    volume: '12,0 m³',
+    payload: '1.300 kg',
+    priceDay: 85,
+    kmIncluded: 250,
+    kmExtra: '0,18',
+    image: '/images/Landlogistik_h1.jpg',
+    highlights: [
+      'Maximales Ladevolumen in der Klasse',
+      'Hochdach für sperrige Güter',
+      'Langstrecke inklusive – 250 km im Tagespreis',
+    ],
+  },
+];
+
+const usps = [
+  {
+    icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>`,
+    title: 'Elektro: Voll abholen, leer zurück',
+    text: 'Alle Elektro-Transporter werden vollgeladen übergeben. Rückgabe leer – kein Ladestopp, keine Ladekarte, kein Stress.',
+  },
+  {
+    icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`,
+    title: 'Tagesmiete ab Dornbirn',
+    text: 'Flexible Tagesmiete direkt aus Dornbirn – kein versteckter Depotzuschlag, keine Mindestmietdauer.',
+  },
+  {
+    icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 .92h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>`,
+    title: 'Echter Mensch, direkte Absprache',
+    text: 'Kein Online-Buchungsportal mit Kleingedrucktem. Sie rufen an, wir klären alles direkt – auch kurzfristig.',
+  },
+  {
+    icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`,
+    title: 'Vollkasko inklusive',
+    text: 'Alle Fahrzeuge sind vollkaskoversichert – Selbstbehalt auf Anfrage, optional reduzierbar.',
+  },
+];
+---
+
+<BaseLayout
+  title="Transporter mieten Vorarlberg – Diesel & Elektro | Landlogistik Dornbirn"
+  description="Transporter mieten in Vorarlberg – Diesel & Elektro ab €79/Tag. Elektro-Transporter voll geladen abholen, leer zurückbringen. Direkt aus Dornbirn, unkompliziert."
+  canonical="https://landlogistik.at/transporter-mieten/"
+  breadcrumbs={[
+    { name: 'Startseite', url: 'https://landlogistik.at/' },
+    { name: 'Transporter mieten', url: 'https://landlogistik.at/transporter-mieten/' },
+  ]}
+>
+
+  <!-- HERO -->
+  <section class="hero-dark relative overflow-hidden pt-40 pb-28 md:pt-48 md:pb-36" aria-labelledby="miete-heading">
+    <div class="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+      <div class="absolute -top-1/4 -right-1/4 w-[600px] h-[600px] rounded-full bg-primary opacity-20 blur-3xl"></div>
+      <div class="absolute -bottom-1/4 -left-1/4 w-[400px] h-[400px] rounded-full bg-accent opacity-10 blur-3xl"></div>
+    </div>
+    <div class="container relative">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div>
+          <span class="eyebrow text-[#81c784]">Transporter mieten Vorarlberg</span>
+          <div class="divider bg-accent"></div>
+          <h1 id="miete-heading" class="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-white mt-2 mb-6 leading-tight">
+            Transporter mieten –<br/><span class="text-[#a5d6a7]">Diesel & Elektro</span>
+          </h1>
+          <p class="text-lg sm:text-xl text-white/80 mb-8 max-w-xl leading-relaxed">
+            Tagesmiete direkt aus Dornbirn. Elektro-Transporter kommen <strong class="text-white">vollgeladen</strong> –
+            Sie geben ihn leer zurück. Kein Ladekarten-Chaos, kein Ladestopp.
+          </p>
+          <div class="flex flex-wrap gap-4">
+            <a href="#fahrzeuge" class="inline-flex items-center gap-2 px-8 py-4 bg-white text-primary font-semibold rounded-lg hover:bg-warm transition-colors text-lg">
+              Fahrzeuge ansehen
+            </a>
+            <a href="#anfrage" class="inline-flex items-center gap-2 px-8 py-4 text-white border-2 border-white/30 rounded-lg hover:border-white/60 hover:bg-white/10 transition-colors text-lg font-semibold">
+              Direkt anfragen
+            </a>
+          </div>
+        </div>
+        <div class="hidden lg:flex items-center justify-center">
+          <img
+            src="/images/transporter-an-e-ladestation.jpg"
+            alt="Elektro-Transporter an Ladestation – Landlogistik Dornbirn"
+            width="560"
+            height="400"
+            class="w-full max-w-lg rounded-2xl object-cover shadow-2xl"
+            loading="eager"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- USPs -->
+  <section class="section bg-warm" aria-label="Vorteile der Transporter-Miete">
+    <div class="container">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {usps.map((u) => (
+          <div class="bg-white rounded-2xl p-6 border border-border">
+            <div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-4 mx-auto">
+              <Fragment set:html={u.icon} />
+            </div>
+            <h3 class="font-display text-base font-bold text-dark mb-2 text-center">{u.title}</h3>
+            <p class="text-sm text-muted leading-relaxed text-center">{u.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FAHRZEUGE -->
+  <section id="fahrzeuge" class="section bg-white" aria-labelledby="fahrzeuge-heading">
+    <div class="container">
+      <div class="text-center mb-10">
+        <span class="eyebrow">Unsere Flotte</span>
+        <div class="divider mx-auto"></div>
+        <h2 id="fahrzeuge-heading" class="font-display text-3xl sm:text-4xl font-bold text-dark mt-2 mb-4">
+          Fahrzeuge & Preise
+        </h2>
+        <p class="text-muted max-w-xl mx-auto mb-8">
+          Alle Preise pro Tag (netto), inkl. der angegebenen Kilometer. Individuelle Angebote für Mehrtagsmieten auf Anfrage.
+        </p>
+
+        <!-- Filter -->
+        <div class="inline-flex rounded-xl border border-border overflow-hidden" role="group" aria-label="Fahrzeugtyp filtern">
+          <button
+            class="filter-btn px-6 py-2.5 text-sm font-semibold transition-colors bg-primary text-white"
+            data-filter="all"
+          >Alle</button>
+          <button
+            class="filter-btn px-6 py-2.5 text-sm font-semibold transition-colors bg-white text-muted hover:bg-warm"
+            data-filter="elektro"
+          >
+            <span class="flex items-center gap-1.5">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+              Elektro
+            </span>
+          </button>
+          <button
+            class="filter-btn px-6 py-2.5 text-sm font-semibold transition-colors bg-white text-muted hover:bg-warm"
+            data-filter="diesel"
+          >Diesel</button>
+        </div>
+      </div>
+
+      <div id="vehicle-grid" class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {vehicles.map((v) => (
+          <div
+            class="vehicle-card rounded-2xl border border-border overflow-hidden hover:shadow-xl transition-shadow duration-300 bg-white"
+            data-type={v.type}
+          >
+            <div class="relative h-52 overflow-hidden bg-warm">
+              <img
+                src={v.image}
+                alt={v.name}
+                class="w-full h-full object-cover"
+                loading="lazy"
+                width="560"
+                height="208"
+              />
+              <div class={`absolute top-3 left-3 px-3 py-1 rounded-full text-xs font-bold ${v.type === 'elektro' ? 'bg-primary text-white' : 'bg-dark text-white'}`}>
+                {v.badge}
+              </div>
+            </div>
+            <div class="p-6">
+              <div class="flex items-start justify-between mb-4">
+                <h3 class="font-display text-xl font-bold text-dark">{v.name}</h3>
+                <div class="text-right">
+                  <p class="font-display text-2xl font-bold text-primary">ab €{v.priceDay}</p>
+                  <p class="text-xs text-muted">/ Tag (netto)</p>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-3 gap-3 mb-5">
+                <div class="bg-warm rounded-lg p-3 text-center">
+                  <p class="font-bold text-dark text-sm">{v.volume}</p>
+                  <p class="text-xs text-muted mt-0.5">Ladevolumen</p>
+                </div>
+                <div class="bg-warm rounded-lg p-3 text-center">
+                  <p class="font-bold text-dark text-sm">{v.payload}</p>
+                  <p class="text-xs text-muted mt-0.5">Nutzlast</p>
+                </div>
+                <div class="bg-warm rounded-lg p-3 text-center">
+                  <p class="font-bold text-dark text-sm">{v.kmIncluded} km</p>
+                  <p class="text-xs text-muted mt-0.5">inkl.</p>
+                </div>
+              </div>
+
+              <ul class="space-y-2 mb-6">
+                {v.highlights.map((h) => (
+                  <li class="flex items-start gap-2 text-sm text-muted">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-primary flex-shrink-0 mt-0.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                    {h}
+                  </li>
+                ))}
+              </ul>
+
+              <a
+                href="#anfrage"
+                class="block w-full text-center px-5 py-3 bg-primary text-white font-semibold rounded-lg hover:bg-primary-dark transition-colors"
+              >
+                {v.name} anfragen
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <p class="text-center text-xs text-muted mt-6">
+        Alle Preise netto zzgl. MwSt. Kilometerpreis über Freikilometer: Elektro €{vehicles[0].kmExtra}/km, Diesel €{vehicles[2].kmExtra}/km. Preise sind Richtwerte – finales Angebot auf Anfrage.
+      </p>
+    </div>
+  </section>
+
+  <!-- ELEKTRO USP DARK SECTION -->
+  <section class="section bg-dark text-white" aria-labelledby="elektro-heading">
+    <div class="container">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <div>
+          <span class="eyebrow text-[#81c784]">Elektro-Transporter</span>
+          <div class="divider bg-accent"></div>
+          <h2 id="elektro-heading" class="font-display text-3xl sm:text-4xl font-bold text-white mt-2 mb-6">
+            Voll abholen.<br/>Leer zurückbringen.
+          </h2>
+          <p class="text-white/70 leading-relaxed mb-6">
+            Elektro-Transporter mieten klingt manchmal kompliziert – Laden, Reichweite, Ladekarten.
+            Bei uns nicht: Sie holen das Fahrzeug <strong class="text-white">vollgeladen</strong> ab
+            und bringen es am Abend leer zurück. Fertig.
+          </p>
+          <ul class="space-y-4">
+            {[
+              'Kein Ladestopp während der Miete nötig',
+              'Keine Ladekarte, kein App-Chaos',
+              '0 g CO₂ direkte Emissionen – ideal für Innenstadtzonen',
+              'Leiser Betrieb – auch für frühe Touren',
+            ].map((item) => (
+              <li class="flex items-start gap-3 text-white/80">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-[#81c784] flex-shrink-0 mt-0.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div class="grid grid-cols-1 gap-5">
+          <img
+            src="/images/transporter-seitlich-ladestation.avif"
+            alt="Elektro-Transporter an Ladestation"
+            width="560"
+            height="360"
+            class="w-full rounded-2xl object-cover"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ANFRAGE FORMULAR -->
+  <section id="anfrage" class="section bg-warm" aria-labelledby="anfrage-heading">
+    <div class="container-sm">
+      <div class="text-center mb-10">
+        <span class="eyebrow">Vermietung anfragen</span>
+        <div class="divider mx-auto"></div>
+        <h2 id="anfrage-heading" class="font-display text-3xl sm:text-4xl font-bold text-dark mt-2">
+          Transporter anfragen
+        </h2>
+        <p class="mt-3 text-muted max-w-lg mx-auto">
+          Kein Onlineportal, kein Kleingedrucktes. Füllen Sie das Formular aus – wir melden uns noch am selben Werktag.
+        </p>
+      </div>
+
+      <div class="bg-white rounded-2xl border border-border p-8 md:p-10">
+        <form method="POST" action="/api/kontakt" novalidate>
+          <input type="text" name="website" class="hidden" aria-hidden="true" tabindex="-1" autocomplete="off" />
+          <input type="hidden" name="art" value="Transporter-Miete" />
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-5">
+            <div>
+              <label for="m-name" class="block text-sm font-semibold text-dark mb-1.5">Name *</label>
+              <input type="text" id="m-name" name="name" required autocomplete="name"
+                class="w-full px-4 py-3 border border-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" />
+            </div>
+            <div>
+              <label for="m-firma" class="block text-sm font-semibold text-dark mb-1.5">Firma</label>
+              <input type="text" id="m-firma" name="firma" autocomplete="organization"
+                class="w-full px-4 py-3 border border-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" />
+            </div>
+            <div>
+              <label for="m-email" class="block text-sm font-semibold text-dark mb-1.5">E-Mail *</label>
+              <input type="email" id="m-email" name="email" required autocomplete="email"
+                class="w-full px-4 py-3 border border-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" />
+            </div>
+            <div>
+              <label for="m-telefon" class="block text-sm font-semibold text-dark mb-1.5">Telefon</label>
+              <input type="tel" id="m-telefon" name="telefon" autocomplete="tel"
+                class="w-full px-4 py-3 border border-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" />
+            </div>
+            <div>
+              <label for="m-fahrzeugtyp" class="block text-sm font-semibold text-dark mb-1.5">Fahrzeugtyp</label>
+              <select id="m-fahrzeugtyp" name="fahrzeugtyp"
+                class="w-full px-4 py-3 border border-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent bg-white">
+                <option value="">Bitte wählen</option>
+                <option value="Elektro – egal welches">Elektro (egal welches)</option>
+                <option value="Mercedes eSprinter">Mercedes eSprinter (Elektro)</option>
+                <option value="VW e-Crafter">VW e-Crafter (Elektro)</option>
+                <option value="Diesel – egal welches">Diesel (egal welches)</option>
+                <option value="Ford Transit">Ford Transit (Diesel)</option>
+                <option value="VW Crafter">VW Crafter (Diesel)</option>
+              </select>
+            </div>
+            <div>
+              <label for="m-dauer" class="block text-sm font-semibold text-dark mb-1.5">Mietdauer</label>
+              <select id="m-dauer" name="mietdauer"
+                class="w-full px-4 py-3 border border-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent bg-white">
+                <option value="">Bitte wählen</option>
+                <option value="1 Tag">1 Tag</option>
+                <option value="2-3 Tage">2–3 Tage</option>
+                <option value="1 Woche">1 Woche</option>
+                <option value="Länger / regelmäßig">Länger / regelmäßig</option>
+              </select>
+            </div>
+            <div>
+              <label for="m-abholdatum" class="block text-sm font-semibold text-dark mb-1.5">Gewünschtes Abholdatum</label>
+              <input type="date" id="m-abholdatum" name="abholdatum"
+                class="w-full px-4 py-3 border border-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" />
+            </div>
+            <div>
+              <label for="m-rueckgabe" class="block text-sm font-semibold text-dark mb-1.5">Gewünschtes Rückgabedatum</label>
+              <input type="date" id="m-rueckgabe" name="zustelldatum"
+                class="w-full px-4 py-3 border border-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" />
+            </div>
+          </div>
+
+          <div class="mb-6">
+            <label for="m-nachricht" class="block text-sm font-semibold text-dark mb-1.5">Anmerkungen</label>
+            <textarea id="m-nachricht" name="nachricht" rows="3"
+              placeholder="Ladegut, besondere Anforderungen, Fragen…"
+              class="w-full px-4 py-3 border border-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent resize-y"></textarea>
+          </div>
+
+          <button type="submit"
+            class="w-full px-8 py-4 bg-primary text-white font-semibold rounded-lg hover:bg-primary-dark transition-colors text-base">
+            Anfrage absenden
+          </button>
+          <p class="text-xs text-muted mt-3 text-center">* Pflichtfelder. Mit dem Absenden akzeptieren Sie unsere <a href="/datenschutz/" class="underline hover:text-dark">Datenschutzerklärung</a>.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<script>
+  const buttons = document.querySelectorAll<HTMLButtonElement>('.filter-btn');
+  const cards = document.querySelectorAll<HTMLElement>('.vehicle-card');
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const filter = btn.dataset.filter ?? 'all';
+
+      buttons.forEach(b => {
+        b.classList.remove('bg-primary', 'text-white');
+        b.classList.add('bg-white', 'text-muted');
+      });
+      btn.classList.add('bg-primary', 'text-white');
+      btn.classList.remove('bg-white', 'text-muted');
+
+      cards.forEach(card => {
+        const type = card.dataset.type ?? '';
+        if (filter === 'all' || type === filter) {
+          card.style.display = '';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+</script>
