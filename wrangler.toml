@@ -2,6 +2,7 @@ name = "landlogistik"
 main = "worker.js"
 compatibility_date = "2024-12-18"
 compatibility_flags = ["nodejs_compat"]
+workers_dev = true
 
 [assets]
 directory = "./dist"
