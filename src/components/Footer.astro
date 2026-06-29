@@ -86,11 +86,16 @@ const currentYear = new Date().getFullYear();
   <div class="border-t border-white/10">
     <div class="container py-5 flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-white/40">
       <p>© {currentYear} Landlogistik – Ihr Kurierdienst aus Dornbirn für ganz Vorarlberg.</p>
-      <nav aria-label="Rechtliches" class="flex gap-4">
-        <a href="/impressum/" class="hover:text-white/70">Impressum</a>
-        <a href="/datenschutz/" class="hover:text-white/70">Datenschutz</a>
-        <a href="/agb/" class="hover:text-white/70">AGB</a>
-      </nav>
+      <div class="flex flex-wrap items-center gap-4">
+        <nav aria-label="Rechtliches" class="flex gap-4">
+          <a href="/impressum/" class="hover:text-white/70">Impressum</a>
+          <a href="/datenschutz/" class="hover:text-white/70">Datenschutz</a>
+          <a href="/agb/" class="hover:text-white/70">AGB</a>
+        </nav>
+        <a href="https://cloudschmiede.at" target="_blank" rel="noopener noreferrer" class="hover:text-white/70">
+          Made with ♥ by Cloudschmiede
+        </a>
+      </div>
     </div>
   </div>
 </footer>
