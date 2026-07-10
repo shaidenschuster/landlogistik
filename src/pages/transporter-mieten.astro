@@ -4,75 +4,57 @@ import CTAButton from '../components/CTAButton.astro';
 
 const vehicles = [
   {
-    id: 'e-sprinter',
+    id: 'ford-e-transit',
     type: 'elektro',
-    name: 'Mercedes eSprinter',
+    name: 'Ford E-Transit L2H2',
     badge: 'Elektro',
-    badgeColor: 'green',
-    volume: '10,5 m³',
-    payload: '1.000 kg',
-    priceDay: 99,
+    volume: '9,5 m³',
+    payload: '950 kg',
+    priceDay: 129,
     kmIncluded: 150,
-    kmExtra: '0,25',
-    image: '/images/transporter-an-e-ladestation.jpg',
+    kmExtra: '0,35',
+    image: '/images/transporter/landlogistik_ford_e_transit_2022_300dpi.jpg',
+    note: 'Unaufgeladen zurückgebracht: €0,30/km wird nachverrechnet.',
     highlights: [
-      'Voll geladen abholen – leer zurückbringen',
-      'Keine Ladekarte, kein Ladestopp',
       'Leiser, emissionsfreier Stadtverkehr',
+      '150 km Tageskilometer inkl.',
+      'Ideal für tägliche Touren in Vorarlberg',
     ],
   },
   {
-    id: 'e-crafter',
-    type: 'elektro',
-    name: 'VW e-Crafter',
-    badge: 'Elektro',
-    badgeColor: 'green',
-    volume: '10,7 m³',
-    payload: '975 kg',
-    priceDay: 95,
-    kmIncluded: 120,
-    kmExtra: '0,25',
-    image: '/images/transporter-seitlich-ladestation.avif',
-    highlights: [
-      'Voll geladen abholen – leer zurückbringen',
-      'Keine Ladekarte, kein Ladestopp',
-      'Ideal für Innenstadt-Lieferungen',
-    ],
-  },
-  {
-    id: 'transit-diesel',
+    id: 'ford-transit-diesel',
     type: 'diesel',
-    name: 'Ford Transit',
+    name: 'Ford Transit L2H2',
     badge: 'Diesel',
-    badgeColor: 'gray',
-    volume: '11,5 m³',
-    payload: '1.200 kg',
-    priceDay: 79,
-    kmIncluded: 200,
-    kmExtra: '0,18',
-    image: '/images/klein-lkw-landlogistik.jpg',
+    volume: '9 m³',
+    payload: '670 kg',
+    priceDay: 105,
+    kmIncluded: 150,
+    kmExtra: '0,45',
+    image: '/images/transporter/landlogistik_ford_transit_hoeher_300dpi.jpg',
+    note: 'Vollgetankt zurückbringen – sonst €2,50/km Nachverrechnung.',
     highlights: [
-      'Große Reichweite ohne Zwischenstopp',
-      'Ideal für Überlandfahrten in Vorarlberg',
-      'Robuste Nutzlast für schwere Güter',
+      'Zuverlässig für alle Strecken in Vorarlberg',
+      '150 km Tageskilometer inkl.',
+      'Vollgetankt zurückbringen',
     ],
   },
   {
-    id: 'crafter-diesel',
+    id: 'toyota-proace-max',
     type: 'diesel',
-    name: 'VW Crafter',
+    name: 'Toyota Proace Max',
     badge: 'Diesel',
-    badgeColor: 'gray',
-    volume: '12,0 m³',
+    volume: '11 m³',
     payload: '1.300 kg',
-    priceDay: 85,
-    kmIncluded: 250,
-    kmExtra: '0,18',
-    image: '/images/Landlogistik_h1.jpg',
+    priceDay: 135,
+    kmIncluded: 150,
+    kmExtra: '0,45',
+    image: '/images/transporter/toyota_proace_max_landlogistik_300dpi.jpg',
+    note: 'Vollgetankt zurückbringen – sonst €2,50/km Nachverrechnung.',
     highlights: [
-      'Maximales Ladevolumen in der Klasse',
-      'Hochdach für sperrige Güter',
-      'Langstrecke inklusive – 250 km im Tagespreis',
+      'Größtes Ladevolumen – ideal für Möbel & Maschinen',
+      '150 km Tageskilometer inkl.',
+      'Vollgetankt zurückbringen',
     ],
   },
 ];
@@ -80,8 +62,8 @@ const vehicles = [
 const usps = [
   {
     icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>`,
-    title: 'Elektro: Voll abholen, leer zurück',
-    text: 'Alle Elektro-Transporter werden vollgeladen übergeben. Rückgabe leer – kein Ladestopp, keine Ladekarte, kein Stress.',
+    title: 'Elektro: emissionsfrei unterwegs',
+    text: 'Der Ford E-Transit fährt leise und ohne direkte Emissionen – ideal für Innenstädte und frühe Touren.',
   },
   {
     icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`,
@@ -222,13 +204,18 @@ const usps = [
               <div class={`absolute top-3 left-3 px-3 py-1 rounded-full text-xs font-bold ${v.type === 'elektro' ? 'bg-primary text-white' : 'bg-dark text-white'}`}>
                 {v.badge}
               </div>
+              <!-- Landlogistik branding overlay -->
+              <div class="absolute bottom-0 left-0 right-0 bg-dark/70 backdrop-blur-sm px-3 py-1.5 flex items-center justify-between">
+                <span class="text-xs text-white/80 font-medium">Mich kann man mieten</span>
+                <span class="text-xs text-white font-semibold">0664 46 208 03 · landlogistik.at</span>
+              </div>
             </div>
             <div class="p-6">
               <div class="flex items-start justify-between mb-4">
                 <h3 class="font-display text-xl font-bold text-dark">{v.name}</h3>
                 <div class="text-right">
-                  <p class="font-display text-2xl font-bold text-primary">ab €{v.priceDay}</p>
-                  <p class="text-xs text-muted">/ Tag (netto)</p>
+                  <p class="font-display text-2xl font-bold text-primary">€{v.priceDay},-</p>
+                  <p class="text-xs text-muted">/ Tag inkl. MwSt.</p>
                 </div>
               </div>
 
@@ -247,7 +234,7 @@ const usps = [
                 </div>
               </div>
 
-              <ul class="space-y-2 mb-6">
+              <ul class="space-y-2 mb-4">
                 {v.highlights.map((h) => (
                   <li class="flex items-start gap-2 text-sm text-muted">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-primary flex-shrink-0 mt-0.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
@@ -255,6 +242,11 @@ const usps = [
                   </li>
                 ))}
               </ul>
+              {v.note && (
+                <p class="text-xs text-muted bg-warm rounded-lg px-3 py-2 mb-4 border border-border">
+                  ⚠ {v.note}
+                </p>
+              )}
 
               <a
                 href="#anfrage"
@@ -267,9 +259,14 @@ const usps = [
         ))}
       </div>
 
-      <p class="text-center text-xs text-muted mt-6">
-        Alle Preise netto zzgl. MwSt. Kilometerpreis über Freikilometer: Elektro €{vehicles[0].kmExtra}/km, Diesel €{vehicles[2].kmExtra}/km. Preise sind Richtwerte – finales Angebot auf Anfrage.
-      </p>
+      <div class="mt-6 text-center space-y-1">
+        <p class="text-xs text-muted">
+          Alle Preise inkl. MwSt. · 150 km Tageskilometer inkl. · Mehrkilometer: Elektro €0,35/km, Diesel €0,45/km
+        </p>
+        <p class="text-xs text-muted">
+          Kaution bei allen Fahrzeugen: <strong class="text-dark">€250,- brutto</strong> · Mehrtagsangebote auf Anfrage
+        </p>
+      </div>
     </div>
   </section>
 
@@ -290,10 +287,10 @@ const usps = [
           </p>
           <ul class="space-y-4">
             {[
-              'Kein Ladestopp während der Miete nötig',
-              'Keine Ladekarte, kein App-Chaos',
               '0 g CO₂ direkte Emissionen – ideal für Innenstadtzonen',
-              'Leiser Betrieb – auch für frühe Touren',
+              'Leiser Betrieb – auch für frühe Touren in Vorarlberg',
+              'Wird das Fahrzeug unaufgeladen zurückgebracht: €0,30/km Nachverrechnung',
+              '150 km Tageskilometer inklusive',
             ].map((item) => (
               <li class="flex items-start gap-3 text-white/80">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-[#81c784] flex-shrink-0 mt-0.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
@@ -304,8 +301,8 @@ const usps = [
         </div>
         <div class="grid grid-cols-1 gap-5">
           <img
-            src="/images/transporter-seitlich-ladestation.avif"
-            alt="Elektro-Transporter an Ladestation"
+            src="/images/transporter/landlogistik_ford_e_transit_2022_300dpi.jpg"
+            alt="Ford E-Transit – Elektro-Transporter Landlogistik"
             width="560"
             height="360"
             class="w-full rounded-2xl object-cover"
