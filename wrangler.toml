@@ -9,7 +9,7 @@ directory = "./dist"
 binding = "ASSETS"
 
 [vars]
-CONTACT_FROM = "kontakt@landlogistik.at"
+CONTACT_FROM = "landlogistik@cloud-schmiede.ch"
 CONTACT_TO = "office@landlogistik.at"
 # Secrets (never commit): wrangler secret put RESEND_API_KEY / TURNSTILE_SECRET
 # TURNSTILE_SITE_KEY → CF dashboard Build variables
