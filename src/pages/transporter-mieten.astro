@@ -418,7 +418,7 @@ const usps = [
       </div>
 
       <div class="bg-white rounded-2xl border border-border p-8 md:p-10">
-        <form method="POST" action="/api/kontakt" novalidate>
+        <form id="tm-form" novalidate>
           <input type="text" name="website" class="hidden" aria-hidden="true" tabindex="-1" autocomplete="off" />
           <input type="hidden" name="art" value="Transporter-Miete" />
           <input type="hidden" name="redirect_to" value="/transporter-mieten/" />
@@ -493,8 +493,8 @@ const usps = [
             ></div>
           </div>
 
-          <button type="submit"
-            class="w-full px-8 py-4 bg-primary text-white font-semibold rounded-lg hover:bg-primary-dark transition-colors text-base">
+          <button id="tm-submit" type="submit"
+            class="w-full px-8 py-4 bg-primary text-white font-semibold rounded-lg hover:bg-primary-dark transition-colors text-base disabled:opacity-60 disabled:cursor-not-allowed">
             Anfrage absenden
           </button>
           <p class="text-xs text-muted mt-3 text-center">* Pflichtfelder. Mit dem Absenden akzeptieren Sie unsere <a href="/datenschutz/" class="underline hover:text-dark">Datenschutzerklärung</a>.</p>
@@ -509,16 +509,38 @@ const usps = [
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 
 <script>
-  // Show success/error banner based on URL params
-  const params = new URLSearchParams(window.location.search);
-  if (params.get('success') === '1') {
-    const el = document.getElementById('tm-banner-success');
-    if (el) { el.style.display = 'block'; el.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
-  }
-  if (params.get('error') === '1') {
-    const el = document.getElementById('tm-banner-error');
-    if (el) { el.style.display = 'block'; el.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
-  }
+  const form = document.getElementById('tm-form') as HTMLFormElement;
+  const btn  = document.getElementById('tm-submit') as HTMLButtonElement;
+  const ok   = document.getElementById('tm-banner-success') as HTMLElement;
+  const err  = document.getElementById('tm-banner-error') as HTMLElement;
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    btn.disabled = true;
+    btn.textContent = 'Wird gesendet…';
+    ok.style.display = 'none';
+    err.style.display = 'none';
+
+    try {
+      const res  = await fetch('/api/kontakt', { method: 'POST', body: new FormData(form) });
+      const data = await res.json();
+      if (data.ok) {
+        ok.style.display = 'block';
+        ok.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        form.reset();
+        if (window.turnstile) window.turnstile.reset();
+      } else {
+        err.style.display = 'block';
+        err.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    } catch {
+      err.style.display = 'block';
+      err.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Anfrage absenden';
+    }
+  });
 </script>
 
 <script>

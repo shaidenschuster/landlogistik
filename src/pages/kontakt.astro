@@ -58,8 +58,7 @@ const TURNSTILE_SITE_KEY = import.meta.env.TURNSTILE_SITE_KEY ?? '0x4AAAAAAD16L1
           </div>
 
           <form
-            method="POST"
-            action="/api/kontakt"
+            id="kontakt-form"
             class="space-y-5 bg-white rounded-2xl p-8 border border-border shadow-sm"
             novalidate
           >
@@ -217,8 +216,9 @@ const TURNSTILE_SITE_KEY = import.meta.env.TURNSTILE_SITE_KEY ?? '0x4AAAAAAD16L1
             ></div>
 
             <button
+              id="kontakt-submit"
               type="submit"
-              class="w-full sm:w-auto px-8 py-3.5 bg-primary text-white font-semibold rounded-lg hover:bg-primary-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[--color-primary] transition-colors shadow-sm hover:shadow-md text-base"
+              class="w-full sm:w-auto px-8 py-3.5 bg-primary text-white font-semibold rounded-lg hover:bg-primary-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[--color-primary] transition-colors shadow-sm hover:shadow-md text-base disabled:opacity-60 disabled:cursor-not-allowed"
             >
               Anfrage senden
             </button>
@@ -288,14 +288,37 @@ const TURNSTILE_SITE_KEY = import.meta.env.TURNSTILE_SITE_KEY ?? '0x4AAAAAAD16L1
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 
 <script>
-  // Show success/error banner based on URL params
-  const params = new URLSearchParams(window.location.search);
-  if (params.get('success') === '1') {
-    const el = document.getElementById('banner-success');
-    if (el) el.style.display = 'block';
-  }
-  if (params.get('error') === '1') {
-    const el = document.getElementById('banner-error');
-    if (el) el.style.display = 'block';
-  }
+  const form = document.getElementById('kontakt-form') as HTMLFormElement;
+  const btn  = document.getElementById('kontakt-submit') as HTMLButtonElement;
+  const ok   = document.getElementById('banner-success') as HTMLElement;
+  const err  = document.getElementById('banner-error') as HTMLElement;
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    btn.disabled = true;
+    btn.textContent = 'Wird gesendet…';
+    ok.style.display = 'none';
+    err.style.display = 'none';
+
+    try {
+      const res  = await fetch('/api/kontakt', { method: 'POST', body: new FormData(form) });
+      const data = await res.json();
+      if (data.ok) {
+        ok.style.display = 'block';
+        ok.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        form.reset();
+        // reset Turnstile
+        if (window.turnstile) window.turnstile.reset();
+      } else {
+        err.style.display = 'block';
+        err.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    } catch {
+      err.style.display = 'block';
+      err.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Anfrage senden';
+    }
+  });
 </script>
