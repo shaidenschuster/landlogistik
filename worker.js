@@ -13,10 +13,16 @@ export default {
 };
 
 async function handleKontakt(request, env) {
-  const redirectBase = new URL(request.url).origin + '/kontakt/';
+  let redirectBase = new URL(request.url).origin + '/kontakt/';
 
   try {
     const formData = await request.formData();
+
+    // Allow custom redirect target (e.g. transporter-mieten page)
+    const redirectTo = formData.get('redirect_to');
+    if (redirectTo && redirectTo.startsWith('/')) {
+      redirectBase = new URL(request.url).origin + redirectTo;
+    }
 
     // Honeypot check
     if (formData.get('website')) {
@@ -49,9 +55,11 @@ async function handleKontakt(request, env) {
       ['Art der Anfrage', formData.get('art')],
       ['E-Mail', formData.get('email')],
       ['Telefon', formData.get('telefon')],
+      ['Fahrzeugtyp', formData.get('fahrzeugtyp')],
+      ['Mietdauer', formData.get('mietdauer')],
       ['Abholdatum', formData.get('abholdatum')],
       ['Abholzeit', formData.get('abholzeit')],
-      ['Zustelldatum', formData.get('zustelldatum')],
+      ['Zustelldatum / Rückgabe', formData.get('zustelldatum')],
       ['Zustellzeit', formData.get('zustellzeit')],
       ['Nachricht', formData.get('nachricht')],
     ];

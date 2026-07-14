@@ -2,6 +2,8 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CTAButton from '../components/CTAButton.astro';
 
+const TURNSTILE_SITE_KEY = import.meta.env.TURNSTILE_SITE_KEY ?? '0x4AAAAAAD16L1qOldSqyqeU';
+
 const vehicles = [
   {
     id: 'ford-e-transit',
@@ -407,10 +409,19 @@ const usps = [
         </p>
       </div>
 
+      <!-- Success / Error banners -->
+      <div id="tm-banner-success" class="alert-banner success mb-6" role="alert" aria-live="polite">
+        <strong>Danke für Ihre Anfrage!</strong> Wir melden uns noch am selben Werktag bei Ihnen.
+      </div>
+      <div id="tm-banner-error" class="alert-banner error mb-6" role="alert" aria-live="polite">
+        <strong>Ein Fehler ist aufgetreten.</strong> Bitte versuchen Sie es erneut oder rufen Sie uns an: 0664 46 208 03.
+      </div>
+
       <div class="bg-white rounded-2xl border border-border p-8 md:p-10">
         <form method="POST" action="/api/kontakt" novalidate>
           <input type="text" name="website" class="hidden" aria-hidden="true" tabindex="-1" autocomplete="off" />
           <input type="hidden" name="art" value="Transporter-Miete" />
+          <input type="hidden" name="redirect_to" value="/transporter-mieten/" />
 
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-5">
             <div>
@@ -473,6 +484,15 @@ const usps = [
               class="w-full px-4 py-3 border border-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent resize-y"></textarea>
           </div>
 
+          <!-- Turnstile widget -->
+          <div class="mb-5">
+            <div
+              class="cf-turnstile"
+              data-sitekey={TURNSTILE_SITE_KEY}
+              data-theme="light"
+            ></div>
+          </div>
+
           <button type="submit"
             class="w-full px-8 py-4 bg-primary text-white font-semibold rounded-lg hover:bg-primary-dark transition-colors text-base">
             Anfrage absenden
@@ -484,6 +504,22 @@ const usps = [
   </section>
 
 </BaseLayout>
+
+<!-- Cloudflare Turnstile script -->
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
+<script>
+  // Show success/error banner based on URL params
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('success') === '1') {
+    const el = document.getElementById('tm-banner-success');
+    if (el) { el.style.display = 'block'; el.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+  }
+  if (params.get('error') === '1') {
+    const el = document.getElementById('tm-banner-error');
+    if (el) { el.style.display = 'block'; el.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+  }
+</script>
 
 <script>
   const buttons = document.querySelectorAll<HTMLButtonElement>('.filter-btn');
