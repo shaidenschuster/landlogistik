@@ -92,6 +92,47 @@ const usps = [
     { name: 'Transporter mieten', url: 'https://landlogistik.at/transporter-mieten/' },
   ]}
 >
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "VehicleRental",
+    "name": "Transporter mieten Vorarlberg",
+    "description": "Kleintransporter mieten in Vorarlberg – Diesel & Elektro. Ford Transit, Ford E-Transit, Toyota Proace Max. Ab €105/Tag inkl. 150 km.",
+    "provider": {
+      "@type": "LocalBusiness",
+      "@id": "https://landlogistik.at/#business",
+      "name": "Landlogistik"
+    },
+    "areaServed": { "@type": "State", "name": "Vorarlberg" },
+    "url": "https://landlogistik.at/transporter-mieten/",
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Transporter-Flotte",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "name": "Ford E-Transit L2H2 Elektro",
+          "price": "129",
+          "priceCurrency": "EUR",
+          "description": "Elektro-Transporter, 950 kg Nutzlast, 9,5 m³, 150 km/Tag inkl."
+        },
+        {
+          "@type": "Offer",
+          "name": "Ford Transit L2H2 Diesel",
+          "price": "105",
+          "priceCurrency": "EUR",
+          "description": "Diesel-Transporter, 670 kg Nutzlast, 9 m³, 150 km/Tag inkl."
+        },
+        {
+          "@type": "Offer",
+          "name": "Toyota Proace Max Diesel",
+          "price": "135",
+          "priceCurrency": "EUR",
+          "description": "Großer Diesel-Transporter, 1.300 kg Nutzlast, 11 m³, 150 km/Tag inkl."
+        }
+      ]
+    }
+  })} />
 
   <!-- HERO -->
   <section class="hero-dark relative overflow-hidden pt-40 pb-28 md:pt-48 md:pb-36" aria-labelledby="miete-heading">

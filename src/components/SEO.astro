@@ -11,7 +11,7 @@ const {
   title,
   description,
   canonical,
-  ogImage = '/images/og-image.png',
+  ogImage = '/images/cargo.png',
   noindex = false,
 } = Astro.props;
 
@@ -23,6 +23,16 @@ const absoluteOg = new URL(ogImage, 'https://landlogistik.at').href;
 <link rel="canonical" href={canonical} />
 
 {noindex && <meta name="robots" content="noindex, nofollow" />}
+
+<!-- Geo meta -->
+<meta name="geo.region" content="AT-8" />
+<meta name="geo.placename" content="Dornbirn" />
+<meta name="geo.position" content="47.4143;9.7437" />
+<meta name="ICBM" content="47.4143, 9.7437" />
+
+<!-- hreflang -->
+<link rel="alternate" hreflang="de-AT" href={canonical} />
+<link rel="alternate" hreflang="x-default" href={canonical} />
 
 <!-- Open Graph -->
 <meta property="og:type" content="website" />

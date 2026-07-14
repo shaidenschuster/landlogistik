@@ -17,7 +17,7 @@ export const faqs: FAQ[] = [
   {
     question: 'Wie viel kostet eine Lieferung?',
     answer:
-      'Ab €15 pro Stopp. Unser Pro-Stopp-Modell ist besonders günstig, wenn Sie mehrere Sendungen an dieselbe Adresse schicken. Individuelle Angebote erhalten Sie auf Anfrage.',
+      'Ab €3,90 pro Paket. Unser Modell wird günstiger, je mehr Pakete pro Stopp zugestellt werden. Individuelle Konditionen erhalten Sie auf Anfrage.',
   },
   {
     question: 'Liefert Landlogistik auch am selben Tag?',

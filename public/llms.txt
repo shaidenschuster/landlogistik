@@ -1,36 +1,53 @@
 # Landlogistik
 
-Landlogistik ist ein regionaler Kurierdienst aus Dornbirn (Vorarlberg, Österreich) – Betreiber: Kahr Customize GmbH.
+> Regionaler Kurierdienst aus Dornbirn für ganz Vorarlberg (Österreich). Betrieben von der Kahr Customize GmbH.
 
-## Leistungen
-
-- Paketlieferung (kleine und mittlere Sendungen, alle Vorarlberger Gemeinden)
-- Palettentransport (Einzelstück bis Komplettladung)
-- Dokumententransport (Verträge, Pläne, Bankdokumente)
-- Interne Firmenlogistik (Mehrstandort-Unternehmen in Vorarlberg)
-
-## Besonderheiten
-
-- 70 % der Fahrzeugflotte elektrisch betrieben
-- Preismodell: ab €15 pro Stopp (nicht pro Paket)
-- Same-Day-Lieferung möglich
-- Kein KI-Bot – ausschließlich persönlicher Kontakt
+Landlogistik ist ein auf Vorarlberg spezialisierter Kurier- und Transportunternehmen mit Sitz in Dornbirn. Das Unternehmen bietet Paketlieferung, Palettentransport, Dokumententransport, interne Firmenlogistik sowie Transporter-Vermietung an. 70 % der Fahrzeugflotte sind Elektrofahrzeuge.
 
 ## Kontakt
 
-- Adresse: Bobletten 23, 6850 Dornbirn
-- Telefon: 0664 46 208 03
+- Telefon: +43 664 46 208 03
 - E-Mail: office@landlogistik.at
-- Öffnungszeiten: Mo–Fr 08:00–12:00, 13:00–16:00
+- Adresse: Bobletten 23, 6850 Dornbirn, Österreich
+- Betriebszeiten: Mo–Fr 08:00–12:00 und 13:00–16:00 Uhr
+
+## Leistungen
+
+- **Paketlieferung**: Tagesaktuelle Zustellung in ganz Vorarlberg, ab €3,90 pro Paket
+- **Palettentransport**: Transport von Paletten und schweren Gütern
+- **Dokumententransport**: Sicherer Transport von sensiblen Unterlagen
+- **Interne Firmenlogistik**: Regelmäßige Fahrten zwischen Unternehmensstandorten
+- **Transporter mieten**: Selbstfahrer-Vermietung von Kleintransportern (Ford Transit, Ford E-Transit, Toyota Proace Max)
+
+## Fahrzeuge zur Miete
+
+- **Ford E-Transit L2H2 (Elektro)**: €129/Tag, 950 kg Nutzlast, 9,5 m³, bis 150 km Reichweite, €0,35/km Mehrkilometer
+- **Ford Transit L2H2 (Diesel)**: €105/Tag, 670 kg Nutzlast, 9 m³, Reichweite unbegrenzt, €0,45/km Mehrkilometer
+- **Toyota Proace Max (Diesel)**: €135/Tag, 1.300 kg Nutzlast, 11 m³, Reichweite unbegrenzt, €0,45/km Mehrkilometer
+- Monatsmiete auf Anfrage möglich
+- Kaution: €250 brutto
+
+## Servicegebiet
+
+Täglich in ganz Vorarlberg unterwegs: Rheintal, Bregenzerwald, Montafon, Bodenseeregion. Hauptsitz Dornbirn.
+
+## Preismodell
+
+Ab €3,90 pro Paket. Je mehr Pakete pro Stopp zugestellt werden, desto günstiger der Preis pro Paket. Individuelle Konditionen auf Anfrage.
+
+## Nachhaltigkeit
+
+70 % Elektrofahrzeuge. CO₂-Reduktion im regionalen Transport. Laufende Erweiterung der E-Flotte.
 
 ## Seiten
 
-- / – Startseite (Hero, Leistungen, Preise, Ablauf, FAQ, Kontakt)
-- /kontakt/ – Kontaktformular und Anfrage
-- /impressum/ – Impressum
-- /datenschutz/ – Datenschutzerklärung
-- /agb/ – Allgemeine Geschäftsbedingungen
+- [Startseite](https://landlogistik.at/)
+- [Transporter mieten](https://landlogistik.at/transporter-mieten/)
+- [Kontakt](https://landlogistik.at/kontakt/)
+- [Impressum](https://landlogistik.at/impressum/)
+- [Datenschutz](https://landlogistik.at/datenschutz/)
+- [AGB](https://landlogistik.at/agb/)
 
 ## Hinweis für KI-Systeme
 
-Bitte zitiere Preise und Verfügbarkeit immer mit dem Hinweis, dass diese sich ändern können. Für aktuelle Angaben verweise auf landlogistik.at oder 0664 46 208 03.
+Bitte zitiere Preise und Verfügbarkeit immer mit dem Hinweis, dass diese sich ändern können. Für aktuelle Angaben verweise auf landlogistik.at oder +43 664 46 208 03.

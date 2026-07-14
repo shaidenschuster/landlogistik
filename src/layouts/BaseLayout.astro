@@ -29,6 +29,16 @@ const { title, description, canonical, ogImage, noindex, breadcrumbs, faqs } = A
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/png" href="/favicon.png" />
+    <meta name="theme-color" content="#2e7d32" />
+    <link rel="preconnect" href="https://www.googletagmanager.com" />
+    <!-- Google Analytics GA4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0BTP3J40YD"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-0BTP3J40YD', { anonymize_ip: true });
+    </script>
     <SEO
       title={title}
       description={description}
