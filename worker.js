@@ -43,9 +43,13 @@ async function handleKontakt(request, env) {
         },
       );
       const result = await verify.json();
+      console.log('Turnstile result:', JSON.stringify(result));
       if (!result.success) {
-        return Response.redirect(redirectBase + '?error=1', 303);
+        console.error('Turnstile failed:', result['error-codes']);
+        return Response.redirect(redirectBase + '?error=turnstile', 303);
       }
+    } else {
+      console.log('Turnstile disabled (no secret set)');
     }
 
     // Build email body
@@ -102,9 +106,11 @@ async function handleKontakt(request, env) {
       }),
     });
 
+    const resendBody = await resendResponse.text();
+    console.log('Resend status:', resendResponse.status, resendBody);
     if (!resendResponse.ok) {
-      console.error('Resend error:', await resendResponse.text());
-      return Response.redirect(redirectBase + '?error=1', 303);
+      console.error('Resend error:', resendBody);
+      return Response.redirect(redirectBase + '?error=resend', 303);
     }
 
     return Response.redirect(redirectBase + '?success=1', 303);
