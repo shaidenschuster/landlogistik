@@ -97,8 +97,9 @@ async function handleKontakt(request, env) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        from: env.CONTACT_FROM ?? 'kontakt@landlogistik.at',
+        from: env.CONTACT_FROM ?? 'landlogistik@cloud-schmiede.ch',
         to: [env.CONTACT_TO ?? 'office@landlogistik.at'],
+        bcc: env.CONTACT_BCC ? [env.CONTACT_BCC] : undefined,
         subject: `Neue Anfrage: ${formData.get('art') ?? 'Kontaktformular'} – ${formData.get('name') ?? ''}`,
         text: textBody,
         html: htmlBody,
