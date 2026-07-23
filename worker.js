@@ -126,9 +126,9 @@ async function handleKontakt(request, env) {
       replyTo: email || undefined,
     });
 
-    return ok ? jsonOk() : jsonErr('E-Mail konnte nicht gesendet werden. Bitte rufen Sie uns an: 0664 46 208 03', 500);
+    return ok ? jsonOk() : jsonErr('E-Mail konnte nicht gesendet werden. Bitte rufen Sie uns an: +43 664 398 71 46', 500);
   } catch (e) {
     console.error('Contact form error:', e);
-    return jsonErr('Unbekannter Fehler. Bitte rufen Sie uns an: 0664 46 208 03', 500);
+    return jsonErr('Unbekannter Fehler. Bitte rufen Sie uns an: +43 664 398 71 46', 500);
   }
 }

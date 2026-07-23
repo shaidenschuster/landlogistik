@@ -22,7 +22,7 @@ export const faqs: FAQ[] = [
   {
     question: 'Liefert Landlogistik auch am selben Tag?',
     answer:
-      'Ja, Same-Day-Lieferung ist häufig möglich. Rufen Sie uns unter 0664 46 208 03 an – wir klären die Machbarkeit in wenigen Minuten.',
+      'Ja, Same-Day-Lieferung ist häufig möglich. Rufen Sie uns unter +43 664 398 71 46 an – wir klären die Machbarkeit in wenigen Minuten.',
   },
   {
     question: 'Übernehmen Sie auch die interne Logistik zwischen unseren Firmenstandorten?',
@@ -37,7 +37,7 @@ export const faqs: FAQ[] = [
   {
     question: 'Wie kann ich einen Auftrag erteilen?',
     answer:
-      'Rufen Sie uns an unter 0664 46 208 03 oder füllen Sie das Kontaktformular auf unserer Website aus. Sie erhalten noch am selben Werktag eine persönliche Rückmeldung.',
+      'Rufen Sie uns an unter +43 664 398 71 46 oder füllen Sie das Kontaktformular auf unserer Website aus. Sie erhalten noch am selben Werktag eine persönliche Rückmeldung.',
   },
   {
     question: 'Rede ich bei Landlogistik mit einem Menschen oder einem KI-Bot?',
