@@ -12,11 +12,11 @@ const vehicles = [
     badge: 'Elektro',
     volume: '9,5 m³',
     payload: '950 kg',
-    priceDay: 129,
+    priceDay: 138,
     kmIncluded: 150,
     kmExtra: '0,35',
     image: '/images/transporter/landlogistik_ford_e_transit_2022_300dpi.jpg',
-    note: 'Unaufgeladen zurückgebracht: €0,30/km wird nachverrechnet.',
+    note: 'Unaufgeladen zurückgebracht: €1,90/km wird nachverrechnet.',
     highlights: [
       'Leiser, emissionsfreier Stadtverkehr',
       '150 km Tageskilometer inkl.',
@@ -30,11 +30,11 @@ const vehicles = [
     badge: 'Diesel',
     volume: '9 m³',
     payload: '670 kg',
-    priceDay: 105,
+    priceDay: 138,
     kmIncluded: 150,
     kmExtra: '0,45',
     image: '/images/transporter/landlogistik_ford_transit_hoeher_300dpi.jpg',
-    note: 'Vollgetankt zurückbringen – sonst €2,50/km Nachverrechnung.',
+    note: 'Vollgetankt zurückbringen – sonst €3,90/Liter Nachverrechnung.',
     highlights: [
       'Zuverlässig für alle Strecken in Vorarlberg',
       '150 km Tageskilometer inkl.',
@@ -48,11 +48,11 @@ const vehicles = [
     badge: 'Diesel',
     volume: '11 m³',
     payload: '1.300 kg',
-    priceDay: 135,
+    priceDay: 138,
     kmIncluded: 150,
     kmExtra: '0,45',
     image: '/images/transporter/toyota_proace_max_landlogistik_300dpi.jpg',
-    note: 'Vollgetankt zurückbringen – sonst €2,50/km Nachverrechnung.',
+    note: 'Vollgetankt zurückbringen – sonst €3,90/Liter Nachverrechnung.',
     highlights: [
       'Größtes Ladevolumen – ideal für Möbel & Maschinen',
       '150 km Tageskilometer inkl.',
@@ -87,7 +87,7 @@ const usps = [
 
 <BaseLayout
   title="Transporter mieten Vorarlberg – Diesel & Elektro | Landlogistik Dornbirn"
-  description="Transporter mieten in Vorarlberg – Diesel & Elektro ab €79/Tag. Elektro-Transporter voll geladen abholen, leer zurückbringen. Direkt aus Dornbirn, unkompliziert."
+  description="Transporter mieten in Vorarlberg – Diesel & Elektro €138/Tag inkl. 150 km. Elektro-Transporter voll geladen abholen, leer zurückbringen. Direkt aus Dornbirn, unkompliziert."
   canonical="https://landlogistik.at/transporter-mieten/"
   breadcrumbs={[
     { name: 'Startseite', url: 'https://landlogistik.at/' },
@@ -99,7 +99,7 @@ const usps = [
     "@type": "Service",
     "serviceType": "VehicleRental",
     "name": "Transporter mieten Vorarlberg",
-    "description": "Kleintransporter mieten in Vorarlberg – Diesel & Elektro. Ford Transit, Ford E-Transit, Toyota Proace Max. Ab €105/Tag inkl. 150 km.",
+    "description": "Kleintransporter mieten in Vorarlberg – Diesel & Elektro. Ford Transit, Ford E-Transit, Toyota Proace Max. €138/Tag inkl. 150 km.",
     "provider": {
       "@type": "LocalBusiness",
       "@id": "https://landlogistik.at/#business",
@@ -114,21 +114,21 @@ const usps = [
         {
           "@type": "Offer",
           "name": "Ford E-Transit L2H2 Elektro",
-          "price": "129",
+          "price": "138",
           "priceCurrency": "EUR",
           "description": "Elektro-Transporter, 950 kg Nutzlast, 9,5 m³, 150 km/Tag inkl."
         },
         {
           "@type": "Offer",
           "name": "Ford Transit L2H2 Diesel",
-          "price": "105",
+          "price": "138",
           "priceCurrency": "EUR",
           "description": "Diesel-Transporter, 670 kg Nutzlast, 9 m³, 150 km/Tag inkl."
         },
         {
           "@type": "Offer",
           "name": "Toyota Proace Max Diesel",
-          "price": "135",
+          "price": "138",
           "priceCurrency": "EUR",
           "description": "Großer Diesel-Transporter, 1.300 kg Nutzlast, 11 m³, 150 km/Tag inkl."
         }
@@ -242,8 +242,8 @@ const usps = [
               <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
             </svg>
             <div class="text-center">
-              <p class="font-display text-4xl font-bold text-primary">€59,90</p>
-              <p class="text-xs text-muted font-medium">inkl. MwSt.</p>
+              <p class="font-display text-4xl font-bold text-primary">€69,90</p>
+              <p class="text-xs text-muted font-medium">inkl. MwSt. · 60 km inkl.</p>
             </div>
           </div>
           <div class="p-6 flex flex-col flex-1">
@@ -256,7 +256,7 @@ const usps = [
               Umzugsgut, Lieferungen, Abholungen. Elektro oder Diesel, je nach Verfügbarkeit.
             </p>
             <ul class="space-y-2 mb-6">
-              {['Elektro oder Diesel – je nach Verfügbarkeit', 'Keine versteckten Kosten', 'Abholung direkt in Dornbirn'].map((h) => (
+              {['Elektro oder Diesel – je nach Verfügbarkeit', '60 km inklusive', 'Abholung direkt in Dornbirn'].map((h) => (
                 <li class="flex items-start gap-2 text-sm text-muted">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-primary flex-shrink-0 mt-0.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
                   {h}
@@ -382,6 +382,7 @@ const usps = [
       <div class="mt-6 text-center space-y-1">
         <p class="text-xs text-muted">
           Alle Preise inkl. MwSt. · 150 km Tageskilometer inkl. · Mehrkilometer: Elektro €0,35/km, Diesel €0,45/km
+          · Nicht vollgetankt/geladen zurück: Diesel €3,90/Liter, Elektro €1,90/km Nachverrechnung
         </p>
         <p class="text-xs text-muted">
           Kaution bei allen Fahrzeugen: <strong class="text-dark">€250,- brutto</strong> · Mehrtagsangebote auf Anfrage

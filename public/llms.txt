@@ -21,9 +21,10 @@ Landlogistik ist ein auf Vorarlberg spezialisierter Kurier- und Transportunterne
 
 ## Fahrzeuge zur Miete
 
-- **Ford E-Transit L2H2 (Elektro)**: €129/Tag, 950 kg Nutzlast, 9,5 m³, bis 150 km Reichweite, €0,35/km Mehrkilometer
-- **Ford Transit L2H2 (Diesel)**: €105/Tag, 670 kg Nutzlast, 9 m³, Reichweite unbegrenzt, €0,45/km Mehrkilometer
-- **Toyota Proace Max (Diesel)**: €135/Tag, 1.300 kg Nutzlast, 11 m³, Reichweite unbegrenzt, €0,45/km Mehrkilometer
+- **Ford E-Transit L2H2 (Elektro)**: €138/Tag, 950 kg Nutzlast, 9,5 m³, 150 km inkl., €0,35/km Mehrkilometer; ungeladen zurück: €1,90/km Nachverrechnung
+- **Ford Transit L2H2 (Diesel)**: €138/Tag, 670 kg Nutzlast, 9 m³, 150 km inkl., €0,45/km Mehrkilometer; ungetankt zurück: €3,90/Liter Nachverrechnung
+- **Toyota Proace Max (Diesel)**: €138/Tag, 1.300 kg Nutzlast, 11 m³, 150 km inkl., €0,45/km Mehrkilometer; ungetankt zurück: €3,90/Liter Nachverrechnung
+- **2-Stunden-Miete**: €69,90 inkl. MwSt., 60 km inkl., Elektro oder Diesel je nach Verfügbarkeit
 - Monatsmiete auf Anfrage möglich
 - Kaution: €250 brutto
 
