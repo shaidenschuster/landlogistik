@@ -136,16 +136,14 @@ const usps = [
     }
   })} />
 
-  <!-- HERO + FAHRZEUGE kombiniert (dunkel) -->
-  <section id="fahrzeuge" class="hero-dark relative overflow-hidden pt-40 pb-16 md:pt-48 md:pb-20" aria-labelledby="miete-heading">
+  <!-- HERO -->
+  <section class="hero-dark relative overflow-hidden pt-40 pb-28 md:pt-48 md:pb-36" aria-labelledby="miete-heading">
     <div class="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
       <div class="absolute -top-1/4 -right-1/4 w-[600px] h-[600px] rounded-full bg-primary opacity-20 blur-3xl"></div>
       <div class="absolute -bottom-1/4 -left-1/4 w-[400px] h-[400px] rounded-full bg-accent opacity-10 blur-3xl"></div>
     </div>
     <div class="container relative">
-
-      <!-- Hero-Text + Triptychon -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center mb-16">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
         <div>
           <span class="eyebrow text-[#81c784]">Transporter mieten Vorarlberg</span>
           <div class="divider bg-accent"></div>
@@ -157,8 +155,11 @@ const usps = [
             Sie geben ihn leer zurück. Kein Ladekarten-Chaos, kein Ladestopp.
           </p>
           <div class="flex flex-wrap gap-4">
-            <a href="#anfrage" class="inline-flex items-center gap-2 px-8 py-4 bg-white text-primary font-semibold rounded-lg hover:bg-warm transition-colors text-lg">
-              Jetzt anfragen
+            <a href="#fahrzeuge" class="inline-flex items-center gap-2 px-8 py-4 bg-white text-primary font-semibold rounded-lg hover:bg-warm transition-colors text-lg">
+              Fahrzeugpreise ansehen
+            </a>
+            <a href="#anfrage" class="inline-flex items-center gap-2 px-8 py-4 text-white border-2 border-white/30 rounded-lg hover:border-white/60 hover:bg-white/10 transition-colors text-lg font-semibold">
+              Direkt anfragen
             </a>
           </div>
         </div>
@@ -176,25 +177,31 @@ const usps = [
           </div>
         </div>
       </div>
+    </div>
+  </section>
 
-      <!-- Section-Titel + Filter (auf Dunkel) -->
+  <!-- FAHRZEUGE -->
+  <section id="fahrzeuge" class="section bg-white" aria-labelledby="fahrzeuge-heading">
+    <div class="container">
       <div class="text-center mb-10">
-        <h2 id="fahrzeuge-heading" class="font-display text-3xl sm:text-4xl font-bold text-white mb-3">
-          Unsere Flotte & Preise
+        <span class="eyebrow">Unsere Flotte</span>
+        <div class="divider mx-auto"></div>
+        <h2 id="fahrzeuge-heading" class="font-display text-3xl sm:text-4xl font-bold text-dark mt-2 mb-4">
+          Fahrzeuge & Preise
         </h2>
-        <p class="text-white/60 max-w-xl mx-auto mb-8">
+        <p class="text-muted max-w-xl mx-auto mb-8">
           Individuelle Angebote für Mehrtagsmieten auf Anfrage.
         </p>
         <!-- Filter -->
-        <div class="inline-flex rounded-xl border border-white/20 overflow-hidden" role="group" aria-label="Fahrzeugtyp filtern">
+        <div class="inline-flex rounded-xl border border-border overflow-hidden" role="group" aria-label="Fahrzeugtyp filtern">
           <button class="filter-btn px-6 py-2.5 text-sm font-semibold transition-colors bg-primary text-white" data-filter="all">Alle</button>
-          <button class="filter-btn px-6 py-2.5 text-sm font-semibold transition-colors bg-white/10 text-white/80 hover:bg-white/20" data-filter="elektro">
+          <button class="filter-btn px-6 py-2.5 text-sm font-semibold transition-colors bg-white text-muted hover:bg-warm" data-filter="elektro">
             <span class="flex items-center gap-1.5">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
               Elektro
             </span>
           </button>
-          <button class="filter-btn px-6 py-2.5 text-sm font-semibold transition-colors bg-white/10 text-white/80 hover:bg-white/20" data-filter="diesel">Diesel</button>
+          <button class="filter-btn px-6 py-2.5 text-sm font-semibold transition-colors bg-white text-muted hover:bg-warm" data-filter="diesel">Diesel</button>
         </div>
       </div>
 
@@ -202,29 +209,29 @@ const usps = [
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
 
         <!-- 2h-Miete Card -->
-        <div class="rounded-2xl border border-white/20 bg-white/10 backdrop-blur-sm overflow-hidden hover:bg-white/15 transition-all duration-300 flex flex-col">
-          <div class="h-40 bg-gradient-to-br from-primary/30 to-accent/20 flex items-center justify-center gap-4">
-            <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" class="text-white opacity-70" aria-hidden="true">
+        <div class="rounded-2xl border-2 border-primary/30 bg-warm overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col">
+          <div class="h-40 bg-gradient-to-br from-primary/15 to-accent/10 flex items-center justify-center gap-4">
+            <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" class="text-primary opacity-70" aria-hidden="true">
               <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
             </svg>
             <div class="text-center">
-              <p class="font-display text-4xl font-bold text-white">€69,90</p>
-              <p class="text-xs text-white/70 font-medium">inkl. MwSt. · 60 km inkl.</p>
+              <p class="font-display text-4xl font-bold text-primary">€69,90</p>
+              <p class="text-xs text-muted font-medium">inkl. MwSt. · 60 km inkl.</p>
             </div>
           </div>
           <div class="p-6 flex flex-col flex-1">
             <div class="mb-4">
-              <h3 class="font-display text-xl font-bold text-white mb-1">2-Stunden-Miete</h3>
-              <p class="text-sm text-white/60">Schnell, unkompliziert, ohne Tagesmiete.</p>
+              <h3 class="font-display text-xl font-bold text-dark mb-1">2-Stunden-Miete</h3>
+              <p class="text-sm text-muted">Schnell, unkompliziert, ohne Tagesmiete.</p>
             </div>
-            <p class="text-white/60 text-sm leading-relaxed flex-1 mb-5">
+            <p class="text-muted text-sm leading-relaxed flex-1 mb-5">
               Perfekt für Transporte, die weniger als einen halben Tag dauern –
               Umzugsgut, Lieferungen, Abholungen. Elektro oder Diesel, je nach Verfügbarkeit.
             </p>
             <ul class="space-y-2 mb-6">
               {['Elektro oder Diesel – je nach Verfügbarkeit', '60 km inklusive', 'Abholung direkt in Dornbirn'].map((h) => (
-                <li class="flex items-start gap-2 text-sm text-white/70">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-[#81c784] flex-shrink-0 mt-0.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                <li class="flex items-start gap-2 text-sm text-muted">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-primary flex-shrink-0 mt-0.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
                   {h}
                 </li>
               ))}
@@ -236,33 +243,33 @@ const usps = [
         </div>
 
         <!-- Monatsmiete Card -->
-        <div class="rounded-2xl border border-dashed border-white/30 bg-white/10 backdrop-blur-sm overflow-hidden hover:bg-white/15 transition-all duration-300 flex flex-col">
-          <div class="h-40 bg-gradient-to-br from-white/10 to-accent/20 flex items-center justify-center">
-            <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" class="text-white opacity-50" aria-hidden="true">
+        <div class="rounded-2xl border-2 border-dashed border-primary/40 bg-warm overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col">
+          <div class="h-40 bg-gradient-to-br from-primary/10 to-accent/10 flex items-center justify-center">
+            <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" class="text-primary opacity-60" aria-hidden="true">
               <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
             </svg>
           </div>
           <div class="p-6 flex flex-col flex-1">
             <div class="flex items-start justify-between mb-4">
-              <h3 class="font-display text-xl font-bold text-white">Monatsmiete</h3>
+              <h3 class="font-display text-xl font-bold text-dark">Monatsmiete</h3>
               <div class="text-right">
-                <p class="font-display text-2xl font-bold text-[#a5d6a7]">auf Anfrage</p>
-                <p class="text-xs text-white/60">/ Monat inkl. MwSt.</p>
+                <p class="font-display text-2xl font-bold text-primary">auf Anfrage</p>
+                <p class="text-xs text-muted">/ Monat inkl. MwSt.</p>
               </div>
             </div>
-            <p class="text-white/60 text-sm leading-relaxed flex-1 mb-5">
+            <p class="text-muted text-sm leading-relaxed flex-1 mb-5">
               Regelmäßiger Bedarf? Eine Monatsmiete lohnt sich ab einer gewissen Auslastung deutlich –
               und gibt Ihnen maximale Planungssicherheit ohne tägliche Disposition.
             </p>
             <ul class="space-y-2 mb-6">
               {['Fahrzeug steht täglich zur Verfügung', 'Kein Buchungsaufwand pro Tag', 'Individuelles Angebot je nach Fahrzeug & Laufzeit'].map((h) => (
-                <li class="flex items-start gap-2 text-sm text-white/70">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-[#81c784] flex-shrink-0 mt-0.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                <li class="flex items-start gap-2 text-sm text-muted">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-primary flex-shrink-0 mt-0.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
                   {h}
                 </li>
               ))}
             </ul>
-            <a href="#anfrage" class="block w-full text-center px-5 py-3 border-2 border-white/40 text-white font-semibold rounded-lg hover:bg-white/20 transition-colors">
+            <a href="#anfrage" class="block w-full text-center px-5 py-3 border-2 border-primary text-primary font-semibold rounded-lg hover:bg-primary hover:text-white transition-colors">
               Monatsmiete anfragen
             </a>
           </div>
@@ -346,12 +353,12 @@ const usps = [
       </div>
 
       <div class="mt-6 text-center space-y-1">
-        <p class="text-xs text-white/50">
+        <p class="text-xs text-muted">
           Alle Preise inkl. MwSt. · 150 km Tageskilometer inkl. · Mehrkilometer: Elektro €0,35/km, Diesel €0,45/km
           · Nicht vollgetankt/geladen zurück: Diesel €3,90/km, Elektro €1,90/km Nachverrechnung
         </p>
-        <p class="text-xs text-white/50">
-          Kaution bei allen Fahrzeugen: <strong class="text-white/80">€150,- brutto</strong> · Mehrtagsangebote auf Anfrage
+        <p class="text-xs text-muted">
+          Kaution bei allen Fahrzeugen: <strong class="text-dark">€150,- brutto</strong> · Mehrtagsangebote auf Anfrage
         </p>
       </div>
     </div>
