@@ -136,8 +136,52 @@ const usps = [
     }
   })} />
 
-  <!-- FAHRZEUGE – direkt nach dem Header sichtbar -->
-  <section id="fahrzeuge" class="section bg-white pt-36 md:pt-40" aria-labelledby="fahrzeuge-heading">
+  <!-- HERO -->
+  <section class="hero-dark relative overflow-hidden pt-40 pb-20 md:pt-48 md:pb-24" aria-labelledby="miete-heading">
+    <div class="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+      <div class="absolute -top-1/4 -right-1/4 w-[600px] h-[600px] rounded-full bg-primary opacity-20 blur-3xl"></div>
+      <div class="absolute -bottom-1/4 -left-1/4 w-[400px] h-[400px] rounded-full bg-accent opacity-10 blur-3xl"></div>
+    </div>
+    <div class="container relative">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div>
+          <span class="eyebrow text-[#81c784]">Transporter mieten Vorarlberg</span>
+          <div class="divider bg-accent"></div>
+          <h1 id="miete-heading" class="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-white mt-2 mb-6 leading-tight">
+            Transporter mieten –<br/><span class="text-[#a5d6a7]">Diesel & Elektro</span>
+          </h1>
+          <p class="text-lg sm:text-xl text-white/80 mb-8 max-w-xl leading-relaxed">
+            Tagesmiete direkt aus Dornbirn. Elektro-Transporter kommen <strong class="text-white">vollgeladen</strong> –
+            Sie geben ihn leer zurück. Kein Ladekarten-Chaos, kein Ladestopp.
+          </p>
+          <div class="flex flex-wrap gap-4">
+            <a href="#fahrzeuge" class="inline-flex items-center gap-2 px-8 py-4 bg-white text-primary font-semibold rounded-lg hover:bg-warm transition-colors text-lg">
+              Fahrzeuge ansehen
+            </a>
+            <a href="#anfrage" class="inline-flex items-center gap-2 px-8 py-4 text-white border-2 border-white/30 rounded-lg hover:border-white/60 hover:bg-white/10 transition-colors text-lg font-semibold">
+              Direkt anfragen
+            </a>
+          </div>
+        </div>
+        <div class="hidden lg:flex items-center justify-center">
+          <div class="w-full max-w-lg rounded-2xl overflow-hidden shadow-2xl flex h-72">
+            <div class="flex-1 overflow-hidden">
+              <img src="/images/transporter/landlogistik_ford_e_transit_2022_300dpi.jpg" alt="Ford E-Transit Elektro" class="w-full h-full object-cover scale-110" loading="eager" />
+            </div>
+            <div class="flex-1 overflow-hidden border-x-2 border-white/20">
+              <img src="/images/transporter/landlogistik_ford_transit_hoeher_300dpi.jpg" alt="Ford Transit Diesel" class="w-full h-full object-cover scale-110" loading="eager" />
+            </div>
+            <div class="flex-1 overflow-hidden">
+              <img src="/images/transporter/toyota_proace_max_landlogistik_300dpi.jpg" alt="Toyota Proace Max" class="w-full h-full object-cover scale-110" loading="eager" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAHRZEUGE -->
+  <section id="fahrzeuge" class="section bg-white" aria-labelledby="fahrzeuge-heading">
     <div class="container">
       <div class="text-center mb-10">
         <span class="eyebrow">Unsere Flotte</span>
@@ -326,47 +370,6 @@ const usps = [
         <p class="text-xs text-muted">
           Kaution bei allen Fahrzeugen: <strong class="text-dark">€150,- brutto</strong> · Mehrtagsangebote auf Anfrage
         </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- HERO -->
-  <section class="hero-dark relative overflow-hidden py-20" aria-labelledby="miete-heading">
-    <div class="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
-      <div class="absolute -top-1/4 -right-1/4 w-[600px] h-[600px] rounded-full bg-primary opacity-20 blur-3xl"></div>
-      <div class="absolute -bottom-1/4 -left-1/4 w-[400px] h-[400px] rounded-full bg-accent opacity-10 blur-3xl"></div>
-    </div>
-    <div class="container relative">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-        <div>
-          <span class="eyebrow text-[#81c784]">Transporter mieten Vorarlberg</span>
-          <div class="divider bg-accent"></div>
-          <h1 id="miete-heading" class="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-white mt-2 mb-6 leading-tight">
-            Transporter mieten –<br/><span class="text-[#a5d6a7]">Diesel & Elektro</span>
-          </h1>
-          <p class="text-lg sm:text-xl text-white/80 mb-8 max-w-xl leading-relaxed">
-            Tagesmiete direkt aus Dornbirn. Elektro-Transporter kommen <strong class="text-white">vollgeladen</strong> –
-            Sie geben ihn leer zurück. Kein Ladekarten-Chaos, kein Ladestopp.
-          </p>
-          <div class="flex flex-wrap gap-4">
-            <a href="#anfrage" class="inline-flex items-center gap-2 px-8 py-4 bg-white text-primary font-semibold rounded-lg hover:bg-warm transition-colors text-lg">
-              Jetzt anfragen
-            </a>
-          </div>
-        </div>
-        <div class="hidden lg:flex items-center justify-center">
-          <div class="w-full max-w-lg rounded-2xl overflow-hidden shadow-2xl flex h-64">
-            <div class="flex-1 overflow-hidden">
-              <img src="/images/transporter/landlogistik_ford_e_transit_2022_300dpi.jpg" alt="Ford E-Transit Elektro" class="w-full h-full object-cover scale-110" loading="lazy" />
-            </div>
-            <div class="flex-1 overflow-hidden border-x-2 border-white/20">
-              <img src="/images/transporter/landlogistik_ford_transit_hoeher_300dpi.jpg" alt="Ford Transit Diesel" class="w-full h-full object-cover scale-110" loading="lazy" />
-            </div>
-            <div class="flex-1 overflow-hidden">
-              <img src="/images/transporter/toyota_proace_max_landlogistik_300dpi.jpg" alt="Toyota Proace Max" class="w-full h-full object-cover scale-110" loading="lazy" />
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   </section>
