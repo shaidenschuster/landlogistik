@@ -26,7 +26,7 @@ Landlogistik ist ein auf Vorarlberg spezialisierter Kurier- und Transportunterne
 - **Toyota Proace Max (Diesel)**: €138/Tag, 1.300 kg Nutzlast, 11 m³, 150 km inkl., €0,45/km Mehrkilometer; ungetankt zurück: €3,90/km Nachverrechnung
 - **2-Stunden-Miete**: €69,90 inkl. MwSt., 60 km inkl., Elektro oder Diesel je nach Verfügbarkeit
 - Monatsmiete auf Anfrage möglich
-- Kaution: €250 brutto
+- Kaution: €150 brutto
 
 ## Servicegebiet
 
@@ -43,7 +43,7 @@ Ab €3,90 pro Paket. Je mehr Pakete pro Stopp zugestellt werden, desto günstig
 ## Seiten
 
 - [Startseite](https://landlogistik.at/)
-- [Transporter mieten](https://landlogistik.at/transporter-mieten/)
+- [Transporter mieten](https://landlogistik.at/mieten/)
 - [Kontakt](https://landlogistik.at/kontakt/)
 - [Impressum](https://landlogistik.at/impressum/)
 - [Datenschutz](https://landlogistik.at/datenschutz/)

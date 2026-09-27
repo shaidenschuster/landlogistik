@@ -6,6 +6,10 @@ export default {
       return handleKontakt(request, env);
     }
 
+    if (url.pathname === '/transporter-mieten/' || url.pathname === '/transporter-mieten') {
+      return Response.redirect('https://landlogistik.at/mieten/', 301);
+    }
+
     return env.ASSETS.fetch(request);
   },
 };

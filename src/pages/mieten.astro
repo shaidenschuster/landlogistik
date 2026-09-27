@@ -1,0 +1,456 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const TURNSTILE_SITE_KEY = import.meta.env.TURNSTILE_SITE_KEY ?? '0x4AAAAAAD16L1qOldSqyqeU';
+
+const images = [
+  { src: '/images/transporter/landlogistik_ford_e_transit_2022_300dpi.jpg', alt: 'Ford E-Transit L2H2 – Elektro', badge: 'Elektro' },
+  { src: '/images/transporter/landlogistik_ford_transit_hoeher_300dpi.jpg', alt: 'Ford Transit L2H2 – Diesel', badge: 'Diesel' },
+  { src: '/images/transporter/toyota_proace_max_landlogistik_300dpi.jpg', alt: 'Toyota Proace Max – Diesel', badge: 'Diesel' },
+];
+
+const plans = [
+  {
+    id: '2h',
+    label: '2-Stunden-Miete',
+    price: '€ 69,90',
+    unit: 'inkl. MwSt.',
+    highlights: [
+      'Diesel oder Elektro-Fahrzeug',
+      'L2H2 – ca. 10 m³ Ladevolumen',
+      '60 km inklusive',
+      'Abholung ab Weiler oder Dornbirn',
+    ],
+    cta: '2h-Miete anfragen',
+    featured: false,
+  },
+  {
+    id: 'tag',
+    label: 'Tagesmiete',
+    price: '€ 138,–',
+    unit: 'inkl. MwSt.',
+    highlights: [
+      'Diesel oder Elektro-Fahrzeug',
+      'L2H2 – ca. 10 m³ Ladevolumen',
+      '150 km inklusive',
+      'Abholung ab Weiler oder Dornbirn',
+    ],
+    cta: 'Tagesmiete anfragen',
+    featured: true,
+  },
+  {
+    id: 'monat',
+    label: 'Monatsmiete',
+    price: 'auf Anfrage',
+    unit: 'inkl. MwSt.',
+    highlights: [
+      'Diesel oder Elektro-Fahrzeug',
+      'L2H2 – ca. 10 m³ Ladevolumen',
+      'Mieten ab Weiler oder Dornbirn',
+      'Individuelles Angebot je nach Mietdauer',
+    ],
+    cta: 'Monatsmiete anfragen',
+    featured: false,
+  },
+];
+
+const infoItems = [
+  { icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>`, label: 'Mieten ab Weiler oder Dornbirn', sub: 'Kein versteckter Depotzuschlag' },
+  { icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg>`, label: 'Kaution & Selbstbehalt', sub: 'Kaution bei 2-Stunden- und Tagesmiete: 150,- €. Alle Fahrzeuge vollkaskoversichert. Selbstbehalt pro Schadenfall: 1.200,- €' },
+  { icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></svg>`, label: 'Rückgabekosten', sub: 'Mehrkilometer entstehen, wenn ein Fahrzeug stärker verschmutzt ist (Innenreinigung: Nachberechnung ca. 0,10 €/m). Nicht vollgetankt zurück: 3,90 €/km. Nicht vollgeladen zurück: 1,90 €/km' },
+  { icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>`, label: 'Elektro emissionsfrei unterwegs', sub: 'Leise, sauber und ideal für den Stadtverkehr. Sparen Sie sich den Kosten gegenüber einem Dieselfahrzeug' },
+];
+---
+
+<BaseLayout
+  title="Transporter mieten Vorarlberg – Diesel & Elektro | Landlogistik"
+  description="Transporter mieten in Vorarlberg – 2h ab €69,90, Tagesmiete €138 inkl. 150 km. Diesel & Elektro. Direkt aus Dornbirn, unkompliziert anfragen."
+  canonical="https://landlogistik.at/mieten/"
+  breadcrumbs={[
+    { name: 'Startseite', url: 'https://landlogistik.at/' },
+    { name: 'Transporter mieten', url: 'https://landlogistik.at/mieten/' },
+  ]}
+>
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "VehicleRental",
+    "name": "Transporter mieten Vorarlberg",
+    "description": "Kleintransporter mieten in Vorarlberg – Diesel & Elektro. Ford Transit, Ford E-Transit, Toyota Proace Max. €138/Tag inkl. 150 km.",
+    "provider": { "@type": "LocalBusiness", "@id": "https://landlogistik.at/#business", "name": "Landlogistik" },
+    "areaServed": { "@type": "State", "name": "Vorarlberg" },
+    "url": "https://landlogistik.at/mieten/",
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Transporter-Flotte",
+      "itemListElement": [
+        { "@type": "Offer", "name": "2-Stunden-Miete", "price": "69.90", "priceCurrency": "EUR", "description": "Diesel oder Elektro, 60 km inkl." },
+        { "@type": "Offer", "name": "Tagesmiete", "price": "138", "priceCurrency": "EUR", "description": "Diesel oder Elektro, 150 km inkl." }
+      ]
+    }
+  })} />
+
+  <!-- HERO -->
+  <section class="hero-dark relative overflow-hidden pt-20 pb-6 md:pt-36 md:pb-14" aria-labelledby="miete-heading">
+    <div class="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+      <div class="absolute -top-1/4 -right-1/4 w-[600px] h-[600px] rounded-full bg-primary opacity-20 blur-3xl"></div>
+      <div class="absolute -bottom-1/4 -left-1/4 w-[400px] h-[400px] rounded-full bg-accent opacity-10 blur-3xl"></div>
+    </div>
+    <div class="container relative">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+        <div>
+          <span class="eyebrow text-[#81c784]">Transporter mieten Vorarlberg</span>
+          <div class="divider bg-accent"></div>
+          <h1 id="miete-heading" class="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-white mt-2 mb-4 leading-tight">
+            Transporter mieten –<br/><span class="text-[#a5d6a7]">Diesel & Elektro</span>
+          </h1>
+          <p class="text-lg text-white/80 mb-6 max-w-xl leading-relaxed">
+            Einfach, flexibel, regional. Ob für ein paar Stunden, einen Tag oder länger –
+            bei uns mieten Sie unkompliziert und zum fairen Preis.
+          </p>
+          <div class="flex flex-wrap gap-3">
+            <a href="#preise" class="inline-flex items-center gap-2 px-6 py-3 bg-white text-primary font-semibold rounded-lg hover:bg-warm transition-colors">
+              Fahrzeugpreise ansehen
+            </a>
+            <a href="#anfrage" class="inline-flex items-center gap-2 px-6 py-3 text-white border-2 border-white/30 rounded-lg hover:border-white/60 hover:bg-white/10 transition-colors font-semibold">
+              Direkt anfragen
+            </a>
+          </div>
+        </div>
+        <!-- Desktop: Triptychon -->
+        <div class="hidden lg:flex items-center justify-center">
+          <div class="w-full max-w-lg rounded-2xl overflow-hidden shadow-2xl flex h-72">
+            {images.map((img, i) => (
+              <div class={`flex-1 overflow-hidden${i === 1 ? ' border-x-2 border-white/20' : ''}`}>
+                <img src={img.src} alt={img.alt} class="w-full h-full object-cover scale-110" loading="eager" />
+              </div>
+            ))}
+          </div>
+        </div>
+        <!-- Mobile: single image slider -->
+        <div class="lg:hidden relative overflow-hidden rounded-2xl shadow-xl h-48">
+          {images.map((img, i) => (
+            <div class={`slider-slide absolute inset-0 transition-opacity duration-500${i === 0 ? ' opacity-100' : ' opacity-0'}`} data-slide={i}>
+              <img src={img.src} alt={img.alt} class="w-full h-full object-cover" loading={i === 0 ? 'eager' : 'lazy'} />
+              <span class="absolute top-3 left-3 px-2.5 py-1 bg-dark/80 text-white text-xs font-bold rounded-full">{img.badge}</span>
+            </div>
+          ))}
+          <div class="absolute bottom-3 left-0 right-0 flex justify-center gap-2">
+            {images.map((_, i) => (
+              <button class="slider-dot w-2 h-2 rounded-full bg-white/50 transition-all" data-dot={i} aria-label={`Bild ${i+1}`}></button>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PREISKARTEN -->
+  <section id="preise" class="section bg-white" aria-labelledby="preise-heading">
+    <div class="container">
+      <div class="text-center mb-10">
+        <span class="eyebrow">Unsere Flotte</span>
+        <div class="divider mx-auto"></div>
+        <h2 id="preise-heading" class="font-display text-3xl sm:text-4xl font-bold text-dark mt-2 mb-3">
+          Fahrzeuge & Preise
+        </h2>
+        <p class="text-muted max-w-xl mx-auto">
+          Individuelle Angebote für Mehrtagsmieten auf Anfrage.
+        </p>
+      </div>
+
+      <!-- 3 Preis-Karten -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+        {plans.map((p) => (
+          <div class={`rounded-2xl overflow-hidden flex flex-col border-2 transition-shadow hover:shadow-xl duration-300 ${p.featured ? 'border-primary shadow-lg' : 'border-border'}`}>
+            {p.featured && (
+              <div class="bg-primary text-white text-xs font-bold text-center py-1.5 tracking-wide uppercase">
+                Beliebteste Wahl
+              </div>
+            )}
+            <div class={`p-6 flex flex-col flex-1 ${p.featured ? 'bg-warm' : 'bg-white'}`}>
+              <h3 class="font-display text-xl font-bold text-dark mb-1">{p.label}</h3>
+              <div class="mb-5 mt-2">
+                <span class="font-display text-4xl font-bold text-primary">{p.price}</span>
+                <span class="text-xs text-muted ml-2">{p.unit}</span>
+              </div>
+              <ul class="space-y-2.5 mb-6 flex-1">
+                {p.highlights.map((h) => (
+                  <li class="flex items-start gap-2 text-sm text-muted">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-primary flex-shrink-0 mt-0.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                    {h}
+                  </li>
+                ))}
+              </ul>
+              <a
+                href="#anfrage"
+                class={`block w-full text-center px-5 py-3 font-semibold rounded-lg transition-colors ${p.featured ? 'bg-primary text-white hover:bg-primary-dark' : 'border-2 border-primary text-primary hover:bg-primary hover:text-white'}`}
+              >
+                {p.cta}
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Fahrzeug-Infobox -->
+      <div class="bg-warm rounded-2xl border border-border p-6 md:p-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+          <div>
+            <h3 class="font-display text-lg font-bold text-dark mb-4">Unsere Fahrzeuge im Überblick</h3>
+            <div class="space-y-3">
+              {[
+                { name: 'Ford E-Transit L2H2', detail: 'Elektro · 9,5 m³ · 950 kg Nutzlast · bis 150 km Reichweite' },
+                { name: 'Ford Transit L2H2', detail: 'Diesel · 9 m³ · 670 kg Nutzlast · unbegrenzte Reichweite' },
+                { name: 'Toyota Proace Max', detail: 'Diesel · 11 m³ · 1.300 kg Nutzlast · unbegrenzte Reichweite' },
+              ].map((v) => (
+                <div class="flex items-start gap-3">
+                  <div class="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center text-primary flex-shrink-0 mt-0.5">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 5v3h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+                  </div>
+                  <div>
+                    <p class="font-semibold text-dark text-sm">{v.name}</p>
+                    <p class="text-xs text-muted">{v.detail}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+          <!-- Bildrotation -->
+          <div class="relative h-48 md:h-56 rounded-xl overflow-hidden shadow-md">
+            {images.map((img, i) => (
+              <div class={`info-slide absolute inset-0 transition-opacity duration-700${i === 0 ? ' opacity-100' : ' opacity-0'}`} data-info={i}>
+                <img src={img.src} alt={img.alt} class="w-full h-full object-cover" loading="lazy" />
+                <div class="absolute bottom-0 left-0 right-0 bg-dark/60 px-3 py-2">
+                  <span class="text-xs text-white font-semibold">{img.alt}</span>
+                </div>
+              </div>
+            ))}
+            <div class="absolute bottom-8 right-3 flex gap-1.5">
+              {images.map((_, i) => (
+                <button class="info-dot w-2 h-2 rounded-full bg-white/50 transition-all" data-idot={i} aria-label={`Fahrzeug ${i+1}`}></button>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Rückgabe & Kosten -->
+      <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {infoItems.map((item) => (
+          <div class="bg-white rounded-xl border border-border p-4">
+            <div class="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center text-primary mb-3">
+              <Fragment set:html={item.icon} />
+            </div>
+            <p class="font-semibold text-dark text-sm mb-1">{item.label}</p>
+            <p class="text-xs text-muted leading-relaxed">{item.sub}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- USPs -->
+  <section class="section bg-warm" aria-label="Vorteile der Transporter-Miete">
+    <div class="container">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {[
+          { icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>`, title: 'Elektro: emissionsfrei', text: 'Ford E-Transit fährt leise und ohne direkte Emissionen – ideal für Innenstädte und frühe Touren.' },
+          { icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`, title: 'Flexibel ab 2 Stunden', text: 'Ob 2 Stunden, ein Tag oder ein Monat – kein Mindestmietbetrag, kein Depotzuschlag.' },
+          { icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 .92h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>`, title: 'Echter Mensch, direkt', text: 'Kein Online-Buchungsportal mit Kleingedrucktem. Anruf genügt, wir klären alles direkt.' },
+          { icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`, title: 'Vollkasko inklusive', text: 'Alle Fahrzeuge vollkaskoversichert – Selbstbehalt €1.200,-, optional reduzierbar.' },
+        ].map((u) => (
+          <div class="bg-white rounded-2xl p-6 border border-border">
+            <div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-4 mx-auto">
+              <Fragment set:html={u.icon} />
+            </div>
+            <h3 class="font-display text-base font-bold text-dark mb-2 text-center">{u.title}</h3>
+            <p class="text-sm text-muted leading-relaxed text-center">{u.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ANFRAGE FORMULAR -->
+  <section id="anfrage" class="section bg-warm" aria-labelledby="anfrage-heading">
+    <div class="container-sm">
+      <div class="text-center mb-10">
+        <span class="eyebrow">Vermietung anfragen</span>
+        <div class="divider mx-auto"></div>
+        <h2 id="anfrage-heading" class="font-display text-3xl sm:text-4xl font-bold text-dark mt-2">
+          Transporter anfragen
+        </h2>
+        <p class="mt-3 text-muted max-w-lg mx-auto">
+          Kein Onlineportal, kein Kleingedrucktes. Füllen Sie das Formular aus – wir melden uns noch am selben Werktag.
+        </p>
+        <div class="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3">
+          <a href="tel:+436643987146"
+            class="inline-flex items-center gap-2.5 px-6 py-3 bg-primary text-white font-semibold rounded-lg hover:bg-primary-dark transition-colors shadow-sm text-sm"
+            aria-label="Jetzt anrufen: +43 664 398 71 46">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 .92h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            Jetzt anrufen
+          </a>
+          <a href="https://wa.me/436643987146" target="_blank" rel="noopener noreferrer"
+            class="inline-flex items-center gap-2.5 px-6 py-3 bg-[#25D366] text-white font-semibold rounded-lg hover:bg-[#1ebe5a] transition-colors shadow-sm text-sm"
+            aria-label="Per WhatsApp anfragen">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Per WhatsApp anfragen
+          </a>
+        </div>
+        <p class="mt-3 text-sm text-muted">oder</p>
+      </div>
+
+      <div id="tm-banner-success" class="alert-banner success mb-6" role="alert" aria-live="polite">
+        <strong>Danke für Ihre Anfrage!</strong> Wir melden uns noch am selben Werktag bei Ihnen.
+      </div>
+      <div id="tm-banner-error" class="alert-banner error mb-6" role="alert" aria-live="polite">
+        <strong>Ein Fehler ist aufgetreten.</strong> Bitte versuchen Sie es erneut oder rufen Sie uns an: +43 664 398 71 46.
+      </div>
+
+      <div class="bg-white rounded-2xl border border-border p-8 md:p-10">
+        <form id="tm-form" novalidate>
+          <input type="text" name="website" class="hidden" aria-hidden="true" tabindex="-1" autocomplete="off" />
+          <input type="hidden" name="art" value="Transporter-Miete" />
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-5">
+            <div>
+              <label for="m-name" class="block text-sm font-semibold text-dark mb-1.5">Name *</label>
+              <input type="text" id="m-name" name="name" required autocomplete="name"
+                class="w-full px-4 py-3 border border-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" />
+            </div>
+            <div>
+              <label for="m-firma" class="block text-sm font-semibold text-dark mb-1.5">Firma</label>
+              <input type="text" id="m-firma" name="firma" autocomplete="organization"
+                class="w-full px-4 py-3 border border-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" />
+            </div>
+            <div>
+              <label for="m-email" class="block text-sm font-semibold text-dark mb-1.5">E-Mail *</label>
+              <input type="email" id="m-email" name="email" required autocomplete="email"
+                class="w-full px-4 py-3 border border-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" />
+            </div>
+            <div>
+              <label for="m-telefon" class="block text-sm font-semibold text-dark mb-1.5">Telefon</label>
+              <input type="tel" id="m-telefon" name="telefon" autocomplete="tel"
+                class="w-full px-4 py-3 border border-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" />
+            </div>
+            <div>
+              <label for="m-fahrzeugtyp" class="block text-sm font-semibold text-dark mb-1.5">Fahrzeugtyp</label>
+              <select id="m-fahrzeugtyp" name="fahrzeugtyp"
+                class="w-full px-4 py-3 border border-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent bg-white">
+                <option value="">Bitte wählen</option>
+                <option value="2h-Miete (Elektro oder Diesel, €69,90)">2h-Miete – Elektro oder Diesel (€69,90)</option>
+                <option value="Tagesmiete (Elektro oder Diesel, €138)">Tagesmiete – Elektro oder Diesel (€138,-)</option>
+                <option value="Monatsmiete (auf Anfrage)">Monatsmiete – auf Anfrage</option>
+              </select>
+            </div>
+            <div>
+              <label for="m-dauer" class="block text-sm font-semibold text-dark mb-1.5">Mietdauer</label>
+              <select id="m-dauer" name="mietdauer"
+                class="w-full px-4 py-3 border border-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent bg-white">
+                <option value="">Bitte wählen</option>
+                <option value="2 Stunden">2 Stunden</option>
+                <option value="1 Tag">1 Tag</option>
+                <option value="2-3 Tage">2–3 Tage</option>
+                <option value="1 Woche">1 Woche</option>
+                <option value="Länger / regelmäßig">Länger / regelmäßig</option>
+              </select>
+            </div>
+            <div>
+              <label for="m-abholdatum" class="block text-sm font-semibold text-dark mb-1.5">Gewünschtes Abholdatum</label>
+              <input type="date" id="m-abholdatum" name="abholdatum"
+                class="w-full px-4 py-3 border border-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" />
+            </div>
+            <div>
+              <label for="m-rueckgabe" class="block text-sm font-semibold text-dark mb-1.5">Gewünschtes Rückgabedatum</label>
+              <input type="date" id="m-rueckgabe" name="zustelldatum"
+                class="w-full px-4 py-3 border border-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" />
+            </div>
+          </div>
+
+          <div class="mb-6">
+            <label for="m-nachricht" class="block text-sm font-semibold text-dark mb-1.5">Anmerkungen</label>
+            <textarea id="m-nachricht" name="nachricht" rows="3"
+              placeholder="Ladegut, besondere Anforderungen, Fragen…"
+              class="w-full px-4 py-3 border border-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent resize-y"></textarea>
+          </div>
+
+          <div class="mb-5">
+            <div class="cf-turnstile" data-sitekey={TURNSTILE_SITE_KEY} data-theme="light"></div>
+          </div>
+
+          <button id="tm-submit" type="submit"
+            class="w-full px-8 py-4 bg-primary text-white font-semibold rounded-lg hover:bg-primary-dark transition-colors text-base disabled:opacity-60 disabled:cursor-not-allowed">
+            Anfrage absenden →
+          </button>
+          <p class="text-xs text-muted mt-3 text-center">* Pflichtfelder. Mit dem Absenden akzeptieren Sie unsere <a href="/datenschutz/" class="underline hover:text-dark">Datenschutzerklärung</a>.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
+<script>
+  // Form submit
+  const form = document.getElementById('tm-form') as HTMLFormElement;
+  const btn  = document.getElementById('tm-submit') as HTMLButtonElement;
+  const ok   = document.getElementById('tm-banner-success') as HTMLElement;
+  const err  = document.getElementById('tm-banner-error') as HTMLElement;
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    btn.disabled = true;
+    btn.textContent = 'Wird gesendet…';
+    ok.style.display = 'none';
+    err.style.display = 'none';
+    try {
+      const res  = await fetch('/api/kontakt', { method: 'POST', body: new FormData(form) });
+      const data = await res.json();
+      if (data.ok) {
+        ok.style.display = 'block';
+        ok.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        form.reset();
+        if ((window as any).turnstile) (window as any).turnstile.reset();
+      } else {
+        err.style.display = 'block';
+        err.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    } catch {
+      err.style.display = 'block';
+      err.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Anfrage absenden →';
+    }
+  });
+
+  // Mobile hero slider
+  function initSlider(slideClass: string, dotClass: string, dotAttr: string) {
+    const slides = document.querySelectorAll<HTMLElement>(`.${slideClass}`);
+    const dots   = document.querySelectorAll<HTMLButtonElement>(`.${dotClass}`);
+    if (!slides.length) return;
+    let current = 0;
+
+    function goTo(i: number) {
+      slides[current].classList.remove('opacity-100');
+      slides[current].classList.add('opacity-0');
+      dots[current]?.classList.remove('bg-white', 'scale-125');
+      dots[current]?.classList.add('bg-white/50');
+      current = i;
+      slides[current].classList.remove('opacity-0');
+      slides[current].classList.add('opacity-100');
+      dots[current]?.classList.add('bg-white', 'scale-125');
+      dots[current]?.classList.remove('bg-white/50');
+    }
+
+    dots.forEach((d, i) => d.addEventListener('click', () => goTo(i)));
+    goTo(0);
+    setInterval(() => goTo((current + 1) % slides.length), 3500);
+  }
+
+  initSlider('slider-slide', 'slider-dot', 'data-dot');
+  initSlider('info-slide', 'info-dot', 'data-idot');
+</script>
