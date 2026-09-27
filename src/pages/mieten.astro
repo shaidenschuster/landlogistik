@@ -55,10 +55,26 @@ const plans = [
 ];
 
 const infoItems = [
-  { icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>`, label: 'Mieten ab Weiler oder Dornbirn', sub: 'Kein versteckter Depotzuschlag' },
-  { icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg>`, label: 'Kaution & Selbstbehalt', sub: 'Kaution bei 2-Stunden- und Tagesmiete: 150,- €. Alle Fahrzeuge vollkaskoversichert. Selbstbehalt pro Schadenfall: 1.200,- €' },
-  { icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></svg>`, label: 'Rückgabekosten', sub: 'Mehrkilometer entstehen, wenn ein Fahrzeug stärker verschmutzt ist (Innenreinigung: Nachberechnung ca. 0,10 €/m). Nicht vollgetankt zurück: 3,90 €/km. Nicht vollgeladen zurück: 1,90 €/km' },
-  { icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>`, label: 'Elektro emissionsfrei unterwegs', sub: 'Leise, sauber und ideal für den Stadtverkehr. Sparen Sie sich den Kosten gegenüber einem Dieselfahrzeug' },
+  {
+    icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`,
+    label: 'Flexibel ab 2 Stunden',
+    sub: 'Kein Mindestmietbetrag, kein Depotzuschlag. Abholung ab Weiler oder Dornbirn – auch kurzfristig möglich.',
+  },
+  {
+    icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`,
+    label: 'Vollkasko & Kaution',
+    sub: 'Alle Fahrzeuge vollkaskoversichert. Kaution €150,-. Selbstbehalt pro Schadenfall €1.200,-.',
+  },
+  {
+    icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></svg>`,
+    label: 'Rückgabe & Nachkosten',
+    sub: 'Diesel nicht vollgetankt zurück: €3,90/km. Elektro nicht vollgeladen: €1,90/km. Mehrkilometer je nach Tarif.',
+  },
+  {
+    icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 .92h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>`,
+    label: 'Direkt & unkompliziert',
+    sub: 'Kein Online-Buchungsportal, kein Kleingedrucktes. Anruf oder Nachricht genügt – wir klären alles persönlich.',
+  },
 ];
 ---
 
@@ -193,79 +209,15 @@ const infoItems = [
         ))}
       </div>
 
-      <!-- Fahrzeug-Infobox -->
-      <div class="bg-warm rounded-2xl border border-border p-6 md:p-8">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-          <div>
-            <h3 class="font-display text-lg font-bold text-dark mb-4">Unsere Fahrzeuge im Überblick</h3>
-            <div class="space-y-3">
-              {[
-                { name: 'Ford E-Transit L2H2', detail: 'Elektro · 9,5 m³ · 950 kg Nutzlast · bis 150 km Reichweite' },
-                { name: 'Ford Transit L2H2', detail: 'Diesel · 9 m³ · 670 kg Nutzlast · unbegrenzte Reichweite' },
-                { name: 'Toyota Proace Max', detail: 'Diesel · 11 m³ · 1.300 kg Nutzlast · unbegrenzte Reichweite' },
-              ].map((v) => (
-                <div class="flex items-start gap-3">
-                  <div class="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center text-primary flex-shrink-0 mt-0.5">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 5v3h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
-                  </div>
-                  <div>
-                    <p class="font-semibold text-dark text-sm">{v.name}</p>
-                    <p class="text-xs text-muted">{v.detail}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-          <!-- Bildrotation -->
-          <div class="relative h-48 md:h-56 rounded-xl overflow-hidden shadow-md">
-            {images.map((img, i) => (
-              <div class={`info-slide absolute inset-0 transition-opacity duration-700${i === 0 ? ' opacity-100' : ' opacity-0'}`} data-info={i}>
-                <img src={img.src} alt={img.alt} class="w-full h-full object-cover" loading="lazy" />
-                <div class="absolute bottom-0 left-0 right-0 bg-dark/60 px-3 py-2">
-                  <span class="text-xs text-white font-semibold">{img.alt}</span>
-                </div>
-              </div>
-            ))}
-            <div class="absolute bottom-8 right-3 flex gap-1.5">
-              {images.map((_, i) => (
-                <button class="info-dot w-2 h-2 rounded-full bg-white/50 transition-all" data-idot={i} aria-label={`Fahrzeug ${i+1}`}></button>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Rückgabe & Kosten -->
+      <!-- Info-Kacheln -->
       <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {infoItems.map((item) => (
-          <div class="bg-white rounded-xl border border-border p-4">
-            <div class="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center text-primary mb-3">
+          <div class="bg-warm rounded-xl border border-border p-5">
+            <div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary mb-3">
               <Fragment set:html={item.icon} />
             </div>
-            <p class="font-semibold text-dark text-sm mb-1">{item.label}</p>
+            <p class="font-semibold text-dark text-sm mb-1.5">{item.label}</p>
             <p class="text-xs text-muted leading-relaxed">{item.sub}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- USPs -->
-  <section class="section bg-warm" aria-label="Vorteile der Transporter-Miete">
-    <div class="container">
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        {[
-          { icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>`, title: 'Elektro: emissionsfrei', text: 'Ford E-Transit fährt leise und ohne direkte Emissionen – ideal für Innenstädte und frühe Touren.' },
-          { icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`, title: 'Flexibel ab 2 Stunden', text: 'Ob 2 Stunden, ein Tag oder ein Monat – kein Mindestmietbetrag, kein Depotzuschlag.' },
-          { icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 .92h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>`, title: 'Echter Mensch, direkt', text: 'Kein Online-Buchungsportal mit Kleingedrucktem. Anruf genügt, wir klären alles direkt.' },
-          { icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`, title: 'Vollkasko inklusive', text: 'Alle Fahrzeuge vollkaskoversichert – Selbstbehalt €1.200,-, optional reduzierbar.' },
-        ].map((u) => (
-          <div class="bg-white rounded-2xl p-6 border border-border">
-            <div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-4 mx-auto">
-              <Fragment set:html={u.icon} />
-            </div>
-            <h3 class="font-display text-base font-bold text-dark mb-2 text-center">{u.title}</h3>
-            <p class="text-sm text-muted leading-relaxed text-center">{u.text}</p>
           </div>
         ))}
       </div>
@@ -334,26 +286,17 @@ const infoItems = [
               <input type="tel" id="m-telefon" name="telefon" autocomplete="tel"
                 class="w-full px-4 py-3 border border-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" />
             </div>
-            <div>
-              <label for="m-fahrzeugtyp" class="block text-sm font-semibold text-dark mb-1.5">Fahrzeugtyp</label>
-              <select id="m-fahrzeugtyp" name="fahrzeugtyp"
+            <div class="sm:col-span-2">
+              <label for="m-dauer" class="block text-sm font-semibold text-dark mb-1.5">Mietdauer *</label>
+              <select id="m-dauer" name="mietdauer" required
                 class="w-full px-4 py-3 border border-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent bg-white">
-                <option value="">Bitte wählen</option>
-                <option value="2h-Miete (Elektro oder Diesel, €69,90)">2h-Miete – Elektro oder Diesel (€69,90)</option>
-                <option value="Tagesmiete (Elektro oder Diesel, €138)">Tagesmiete – Elektro oder Diesel (€138,-)</option>
-                <option value="Monatsmiete (auf Anfrage)">Monatsmiete – auf Anfrage</option>
-              </select>
-            </div>
-            <div>
-              <label for="m-dauer" class="block text-sm font-semibold text-dark mb-1.5">Mietdauer</label>
-              <select id="m-dauer" name="mietdauer"
-                class="w-full px-4 py-3 border border-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent bg-white">
-                <option value="">Bitte wählen</option>
-                <option value="2 Stunden">2 Stunden</option>
-                <option value="1 Tag">1 Tag</option>
-                <option value="2-3 Tage">2–3 Tage</option>
-                <option value="1 Woche">1 Woche</option>
-                <option value="Länger / regelmäßig">Länger / regelmäßig</option>
+                <option value="">Bitte wählen …</option>
+                <option value="2 Stunden (2h-Miete, €69,90 inkl. 60 km)">2 Stunden – 2h-Miete (€69,90 inkl. 60 km)</option>
+                <option value="1 Tag (Tagesmiete, €138 inkl. 150 km)">1 Tag – Tagesmiete (€138,- inkl. 150 km)</option>
+                <option value="2 Tage (€276 inkl. 300 km)">2 Tage (€276,- inkl. 300 km)</option>
+                <option value="3 Tage (€414 inkl. 450 km)">3 Tage (€414,- inkl. 450 km)</option>
+                <option value="4-5 Tage / 1 Woche">4–5 Tage / 1 Woche (Preis auf Anfrage)</option>
+                <option value="Länger als 1 Woche / Monatsmiete">Länger als 1 Woche / Monatsmiete (auf Anfrage)</option>
               </select>
             </div>
             <div>
@@ -452,5 +395,4 @@ const infoItems = [
   }
 
   initSlider('slider-slide', 'slider-dot', 'data-dot');
-  initSlider('info-slide', 'info-dot', 'data-idot');
 </script>
