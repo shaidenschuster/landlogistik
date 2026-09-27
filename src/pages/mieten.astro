@@ -198,15 +198,29 @@ const infoItems = [
         ))}
       </div>
 
+      <!-- Mobile: Fahrzeugbilder -->
+      <div class="lg:hidden mt-8 -mx-4 px-4 overflow-x-auto">
+        <div class="flex gap-3 pb-2" style="width: max-content;">
+          {images.map((img) => (
+            <div class="relative rounded-xl overflow-hidden shadow-md flex-shrink-0" style="width: 72vw; max-width: 280px; height: 160px;">
+              <img src={img.src} alt={img.alt} class="w-full h-full object-cover" loading="lazy" />
+              <div class="absolute bottom-0 left-0 right-0 bg-dark/60 px-3 py-1.5">
+                <span class="text-xs text-white font-semibold">{img.alt}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
       <!-- Info-Kacheln -->
       <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {infoItems.map((item) => (
           <div class="bg-warm rounded-xl border border-border p-5">
-            <div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary mb-3">
+            <div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary mb-3 mx-auto">
               <Fragment set:html={item.icon} />
             </div>
-            <p class="font-semibold text-dark text-sm mb-1.5">{item.label}</p>
-            <p class="text-xs text-muted leading-relaxed">{item.sub}</p>
+            <p class="font-semibold text-dark text-sm mb-1.5 text-center">{item.label}</p>
+            <p class="text-xs text-muted leading-relaxed text-center">{item.sub}</p>
           </div>
         ))}
       </div>
