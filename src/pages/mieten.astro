@@ -22,6 +22,7 @@ const plans = [
       'Abholung ab Weiler oder Dornbirn',
     ],
     cta: '2h-Miete anfragen',
+    ctaHref: '?dauer=2h#anfrage',
     featured: false,
   },
   {
@@ -36,6 +37,7 @@ const plans = [
       'Abholung ab Weiler oder Dornbirn',
     ],
     cta: 'Tagesmiete anfragen',
+    ctaHref: '?dauer=tag#anfrage',
     featured: true,
   },
   {
@@ -50,6 +52,7 @@ const plans = [
       'Individuelles Angebot je nach Mietdauer',
     ],
     cta: 'Monatsmiete anfragen',
+    ctaHref: '?dauer=monat#anfrage',
     featured: false,
   },
 ];
@@ -185,7 +188,7 @@ const infoItems = [
                 ))}
               </ul>
               <a
-                href="#anfrage"
+                href={p.ctaHref}
                 class={`block w-full text-center px-5 py-3 font-semibold rounded-lg transition-colors ${p.featured ? 'bg-primary text-white hover:bg-primary-dark' : 'border-2 border-primary text-primary hover:bg-primary hover:text-white'}`}
               >
                 {p.cta}
@@ -323,6 +326,18 @@ const infoItems = [
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 
 <script>
+  // Mietdauer aus URL-Parameter vorauswählen
+  const dauerMap: Record<string, string> = {
+    '2h':    '2 Stunden (2h-Miete, €69,90 inkl. 60 km)',
+    'tag':   '1 Tag (Tagesmiete, €138 inkl. 150 km)',
+    'monat': 'Länger als 1 Woche / Monatsmiete',
+  };
+  const dauerParam = new URLSearchParams(location.search).get('dauer');
+  if (dauerParam && dauerMap[dauerParam]) {
+    const sel = document.getElementById('m-dauer') as HTMLSelectElement;
+    if (sel) sel.value = dauerMap[dauerParam];
+  }
+
   // Form submit
   const form = document.getElementById('tm-form') as HTMLFormElement;
   const btn  = document.getElementById('tm-submit') as HTMLButtonElement;
