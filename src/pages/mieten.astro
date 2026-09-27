@@ -143,20 +143,6 @@ const infoItems = [
             ))}
           </div>
         </div>
-        <!-- Mobile: single image slider -->
-        <div class="lg:hidden relative overflow-hidden rounded-2xl shadow-xl h-48">
-          {images.map((img, i) => (
-            <div class={`slider-slide absolute inset-0 transition-opacity duration-500${i === 0 ? ' opacity-100' : ' opacity-0'}`} data-slide={i}>
-              <img src={img.src} alt={img.alt} class="w-full h-full object-cover" loading={i === 0 ? 'eager' : 'lazy'} />
-              <span class="absolute top-3 left-3 px-2.5 py-1 bg-dark/80 text-white text-xs font-bold rounded-full">{img.badge}</span>
-            </div>
-          ))}
-          <div class="absolute bottom-3 left-0 right-0 flex justify-center gap-2">
-            {images.map((_, i) => (
-              <button class="slider-dot w-2 h-2 rounded-full bg-white/50 transition-all" data-dot={i} aria-label={`Bild ${i+1}`}></button>
-            ))}
-          </div>
-        </div>
       </div>
     </div>
   </section>
